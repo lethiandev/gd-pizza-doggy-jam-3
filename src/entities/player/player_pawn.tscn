@@ -1,0 +1,183 @@
+[gd_scene load_steps=9 format=3 uid="uid://bepk21ha1i42i"]
+
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/character_controller/character.tscn" id="1_d12nn"]
+[ext_resource type="Material" uid="uid://wgfc11e4oo3h" path="res://common/materials/prototype_green_material.tres" id="2_3icub"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d12nn"]
+material = ExtResource("2_3icub")
+radius = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d12nn"]
+radius = 0.3
+
+[sub_resource type="Animation" id="Animation_j8cx7"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh:mesh:height")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Collision:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_5ec5e"]
+resource_name = "crouch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0.75, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0.75, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0), Vector3(0, 1.12508, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh:mesh:height")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.9]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Collision:shape:height")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5e5t5"]
+_data = {
+&"RESET": SubResource("Animation_j8cx7"),
+&"crouch": SubResource("Animation_5ec5e")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3icub"]
+radius = 0.3
+
+[node name="PlayerPawn" node_paths=PackedStringArray("CROUCH_ANIMATION") instance=ExtResource("1_d12nn")]
+mouse_sensitivity = 0.6
+default_reticle = "uid://coqpusufa8a6k"
+CROUCH_ANIMATION = NodePath("CrouchAnimation2")
+controls = {
+&"BACKWARD": "move_backward",
+&"CROUCH": "crouch",
+&"FORWARD": "move_forward",
+&"JUMP": "jump",
+&"LEFT": "strafe_left",
+&"PAUSE": "ui_cancel",
+&"RIGHT": "strafe_right",
+&"SPRINT": "sprint"
+}
+pausing_enabled = false
+
+[node name="Mesh" parent="." index="0"]
+visible = false
+mesh = SubResource("CapsuleMesh_d12nn")
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("CapsuleShape3D_d12nn")
+
+[node name="CrouchAnimation" parent="." index="2"]
+active = false
+
+[node name="CrouchAnimation2" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_5e5t5")
+}
+
+[node name="CrouchCeilingDetection" parent="." index="6"]
+shape = SubResource("SphereShape3D_3icub")
+target_position = Vector3(0, 0.7, 0)

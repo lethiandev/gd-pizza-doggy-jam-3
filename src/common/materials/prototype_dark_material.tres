@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dbtciphbgxkkq"]
+
+[ext_resource type="Texture2D" uid="uid://cawwxeb85pnhj" path="res://common/materials/prototype_variant_albedo.png" id="1_q1yjt"]
+
+[resource]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.50928617, 0.5092862, 0.509286, 1)
+albedo_texture = ExtResource("1_q1yjt")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true

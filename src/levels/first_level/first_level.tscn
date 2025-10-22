@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5w0qe68dyy6e"]
+
+[ext_resource type="Material" uid="uid://bga8py2egiii8" path="res://common/materials/prototype_light_material.tres" id="1_ef27y"]
+[ext_resource type="PackedScene" uid="uid://bepk21ha1i42i" path="res://entities/player/player_pawn.tscn" id="2_4cp7s"]
+[ext_resource type="Material" uid="uid://dbtciphbgxkkq" path="res://common/materials/prototype_dark_material.tres" id="2_alaxh"]
+
+[sub_resource type="Environment" id="Environment_4cp7s"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ft5bi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ft5bi"]
+size = Vector2(8, 8)
+
+[node name="FirstLevel" type="Node3D"]
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4cp7s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.49999997, 0.75, -0.43301272, 0, 0.5, 0.8660254, 0.86602545, -0.43301266, 0.24999999, 0, 2, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.5
+directional_shadow_max_distance = 20.0
+
+[node name="Environment" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="WorldFloor" type="StaticBody3D" parent="Environment"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/WorldFloor"]
+shape = SubResource("WorldBoundaryShape3D_ft5bi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/WorldFloor"]
+material_override = ExtResource("1_ef27y")
+mesh = SubResource("PlaneMesh_ft5bi")
+
+[node name="StaticMeshes" type="CSGCombiner3D" parent="Environment"]
+material_override = ExtResource("2_alaxh")
+use_collision = true
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.5, -2.875)
+size = Vector3(4.5, 3, 0.25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/StaticMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.625, -2.875)
+operation = 2
+size = Vector3(1, 1.75, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/StaticMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.625, -2.875)
+operation = 2
+size = Vector3(1, 1.75, 0.5)
+
+[node name="ActivePawns" type="Node" parent="."]
+
+[node name="PlayerPawn" parent="ActivePawns" instance=ExtResource("2_4cp7s")]
+
+[node name="InactivePawns" type="Node" parent="."]
+process_mode = 4
