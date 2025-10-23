@@ -8,3 +8,4 @@ albedo_color = Color(0.9471994, 0.9471994, 0.9471994, 1)
 albedo_texture = ExtResource("1_tbdv7")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
+texture_filter = 2
