@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://luhft6yv5hor"]
 
-[ext_resource type="Script" uid="uid://bw5i8mqyujkh4" path="res://common/interactive/interactive_3d.gd" id="1_jvytb"]
+[ext_resource type="Script" uid="uid://d2fowywp0bale" path="res://entities/props/radio/radio_prop.gd" id="1_m6x4b"]
 [ext_resource type="PackedScene" uid="uid://ckw7mhkkwfgsn" path="res://entities/props/radio/radio_prop.glb" id="2_bb6ow"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m6x4b"]
@@ -10,7 +10,7 @@ radius = 0.24723624
 collision_layer = 8
 collision_mask = 0
 monitoring = false
-script = ExtResource("1_jvytb")
+script = ExtResource("1_m6x4b")
 metadata/_custom_type_script = "uid://bw5i8mqyujkh4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -18,3 +18,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16377303, 0)
 shape = SubResource("SphereShape3D_m6x4b")
 
 [node name="RadioMesh" parent="." instance=ExtResource("2_bb6ow")]
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]

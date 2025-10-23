@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5w0qe68dyy6e"]
+[gd_scene load_steps=9 format=3 uid="uid://b5w0qe68dyy6e"]
 
 [ext_resource type="Material" uid="uid://bga8py2egiii8" path="res://common/materials/prototype_light_material.tres" id="1_ef27y"]
 [ext_resource type="PackedScene" uid="uid://bepk21ha1i42i" path="res://entities/player/player_pawn.tscn" id="2_4cp7s"]
 [ext_resource type="Material" uid="uid://dbtciphbgxkkq" path="res://common/materials/prototype_dark_material.tres" id="2_alaxh"]
 [ext_resource type="PackedScene" uid="uid://luhft6yv5hor" path="res://entities/props/radio/radio_prop.tscn" id="3_0nauq"]
+[ext_resource type="Resource" uid="uid://7hk22wllqkrs" path="res://levels/appartment/radio.dialogue" id="4_cj6xl"]
 
 [sub_resource type="Environment" id="Environment_4cp7s"]
 
@@ -149,6 +150,7 @@ size = Vector3(0.15, 1, 0.15)
 
 [node name="RadioProp" parent="Environment/Table" instance=ExtResource("3_0nauq")]
 transform = Transform3D(0.5000001, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, 0.5000001, 0.17272401, 1.0000334, -0.1292882)
+dialogue_source = ExtResource("4_cj6xl")
 
 [node name="ActivePawns" type="Node" parent="."]
 

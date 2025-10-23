@@ -102,6 +102,10 @@ look_right={
 ]
 }
 
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://levels/appartment/radio.dialogue")
+
 [layer_names]
 
 3d_physics/layer_1="static_meshes"
