@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bepk21ha1i42i"]
+[gd_scene load_steps=11 format=3 uid="uid://bepk21ha1i42i"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/character_controller/character.tscn" id="1_d12nn"]
 [ext_resource type="Material" uid="uid://wgfc11e4oo3h" path="res://common/materials/prototype_green_material.tres" id="2_3icub"]
 [ext_resource type="Script" uid="uid://dp4ihogng1egp" path="res://entities/player/player_pawn.gd" id="2_b6yo5"]
+[ext_resource type="Script" uid="uid://cx77l2vj57d67" path="res://common/interactive/interact_ray_cast_3d.gd" id="4_22rpl"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d12nn"]
 material = ExtResource("2_3icub")
@@ -182,8 +183,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_5e5t5")
 }
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Camera" index="0"]
+[node name="InteractRayCast3D" type="RayCast3D" parent="Head/Camera" index="0" node_paths=PackedStringArray("exceptions")]
+unique_name_in_owner = true
 target_position = Vector3(0, 0, -2)
+collision_mask = 15
+hit_from_inside = true
+collide_with_areas = true
+script = ExtResource("4_22rpl")
+exceptions = [NodePath("../../..")]
+metadata/_custom_type_script = "uid://cx77l2vj57d67"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head" index="3"]
 light_energy = 0.1
