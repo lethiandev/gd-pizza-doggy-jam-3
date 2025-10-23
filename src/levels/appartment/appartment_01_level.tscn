@@ -11,7 +11,7 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_ft5bi"]
 size = Vector2(8, 8)
 
-[node name="FirstLevel" type="Node3D"]
+[node name="Appartment01Level" type="Node3D"]
 metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
