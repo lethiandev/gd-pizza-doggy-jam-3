@@ -5,9 +5,9 @@ signal interact_focused()
 signal interact_blured()
 signal interacted()
 
-static var interact_focused_global := make_signal(&"interact_focused_global", { "name": "target", "type": TYPE_OBJECT })
-static var interact_blured_global := make_signal(&"interact_blured_global", { "name": "target", "type": TYPE_OBJECT })
-static var interacted_global := make_signal(&"interact_blured_global", { "name": "target", "type": TYPE_OBJECT })
+static var interact_focused_global := make_signal("interact_focused_global", { "name": "target", "type": TYPE_OBJECT })
+static var interact_blured_global := make_signal("interact_blured_global", { "name": "target", "type": TYPE_OBJECT })
+static var interacted_global := make_signal("interacted_global", { "name": "target", "type": TYPE_OBJECT })
 
 # Workaround for GDScript not having static signals
 static func make_signal(signal_name: StringName, ...args: Array) -> Signal:
