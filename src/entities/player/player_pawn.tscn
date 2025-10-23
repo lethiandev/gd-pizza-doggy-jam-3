@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bepk21ha1i42i"]
+[gd_scene load_steps=10 format=3 uid="uid://bepk21ha1i42i"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/character_controller/character.tscn" id="1_d12nn"]
 [ext_resource type="Material" uid="uid://wgfc11e4oo3h" path="res://common/materials/prototype_green_material.tres" id="2_3icub"]
+[ext_resource type="Script" uid="uid://dp4ihogng1egp" path="res://entities/player/player_pawn.gd" id="2_b6yo5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d12nn"]
 material = ExtResource("2_3icub")
@@ -148,8 +149,9 @@ _data = {
 radius = 0.3
 
 [node name="PlayerPawn" node_paths=PackedStringArray("CROUCH_ANIMATION") instance=ExtResource("1_d12nn")]
+script = ExtResource("2_b6yo5")
 mouse_sensitivity = 0.6
-default_reticle = "uid://coqpusufa8a6k"
+default_reticle = null
 CROUCH_ANIMATION = NodePath("CrouchAnimation2")
 controls = {
 &"BACKWARD": "move_backward",
@@ -161,6 +163,8 @@ controls = {
 &"RIGHT": "strafe_right",
 &"SPRINT": "sprint"
 }
+controller_support = true
+look_sensitivity = 0.05
 pausing_enabled = false
 
 [node name="Mesh" parent="." index="0"]
@@ -178,6 +182,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_5e5t5")
 }
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Head" index="3"]
+light_energy = 0.1
+omni_range = 4.0
+omni_shadow_mode = 0
+
 [node name="CrouchCeilingDetection" parent="." index="6"]
 shape = SubResource("SphereShape3D_3icub")
-target_position = Vector3(0, 0.7, 0)
+target_position = Vector3(0, 1, 0)

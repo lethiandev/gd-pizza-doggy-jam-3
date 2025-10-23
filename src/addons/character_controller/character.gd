@@ -89,6 +89,8 @@ extends CharacterBody3D
 @export var jumping_enabled : bool = true
 ## Whether the player can move in the air or not.
 @export var in_air_momentum : bool = true
+## Allows the player to slightly control acceleration in air
+@export var in_air_momentum_scale : float = 0.2
 ## Smooths the feel of walking.
 @export var motion_smoothing : bool = true
 ## Enables or disables sprinting.
@@ -155,7 +157,7 @@ func _ready():
 	initialize_animations()
 	check_controls()
 	enter_normal_state()
-	
+
 	if OS.get_name() == "Web":
 		Input.set_use_accumulated_input(false)
 
@@ -233,6 +235,10 @@ func handle_movement(delta, input_dir):
 			else:
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
+		else:
+			if motion_smoothing:
+				velocity.x = lerp(velocity.x, direction.x * speed, in_air_momentum_scale * acceleration * delta)
+				velocity.z = lerp(velocity.z, direction.z * speed, in_air_momentum_scale * acceleration * delta)
 	else:
 		if motion_smoothing:
 			velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
@@ -315,12 +321,13 @@ func handle_state(moving):
 		elif sprint_mode == 1:
 			if moving:
 				# If the player is holding sprint before moving, handle that scenario
-				if Input.is_action_pressed(controls.SPRINT) and state == "normal":
-					enter_sprint_state()
 				if Input.is_action_just_pressed(controls.SPRINT):
 					match state:
 						"normal":
 							enter_sprint_state()
+						"crouching":
+							if !$CrouchCeilingDetection.is_colliding():
+								enter_sprint_state()
 						"sprinting":
 							enter_normal_state()
 			elif state == "sprinting":
@@ -337,6 +344,8 @@ func handle_state(moving):
 			if Input.is_action_just_pressed(controls.CROUCH):
 				match state:
 					"normal":
+						enter_crouch_state()
+					"sprinting":
 						enter_crouch_state()
 					"crouching":
 						if !$CrouchCeilingDetection.is_colliding():
@@ -449,7 +458,7 @@ func update_debug_menu_per_tick():
 
 func _unhandled_input(event : InputEvent):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		mouseInput = event.relative
+		mouseInput = event.screen_relative
 	# Toggle debug menu
 	elif event is InputEventKey:
 		if event.is_released():
