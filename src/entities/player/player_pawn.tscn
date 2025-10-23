@@ -9,7 +9,7 @@ material = ExtResource("2_3icub")
 radius = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d12nn"]
-radius = 0.3
+radius = 0.25
 
 [sub_resource type="Animation" id="Animation_j8cx7"]
 resource_name = "RESET"
@@ -146,12 +146,12 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3icub"]
-radius = 0.3
+radius = 0.25
 
 [node name="PlayerPawn" node_paths=PackedStringArray("CROUCH_ANIMATION") instance=ExtResource("1_d12nn")]
 script = ExtResource("2_b6yo5")
-mouse_sensitivity = 0.6
-default_reticle = null
+mouse_sensitivity = 0.4
+default_reticle = "uid://coqpusufa8a6k"
 CROUCH_ANIMATION = NodePath("CrouchAnimation2")
 controls = {
 &"BACKWARD": "move_backward",
@@ -181,6 +181,9 @@ active = false
 libraries = {
 &"": SubResource("AnimationLibrary_5e5t5")
 }
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera" index="0"]
+target_position = Vector3(0, 0, -2)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Head" index="3"]
 light_energy = 0.1
