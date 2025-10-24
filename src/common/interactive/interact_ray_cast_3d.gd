@@ -24,3 +24,8 @@ func _physics_process(_delta: float) -> void:
 	if last_collider is Interactive3D:
 		interactive = get_collider()
 		last_collider.focus_grab()
+
+
+func interact() -> void:
+	if interactive and interactive.has_method("interact"):
+		interactive.interact()

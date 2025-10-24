@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw0le1oopljp7"]
+
+[ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://addons/dialogue_manager/example_balloon/example_balloon.tscn" id="1_udtt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_udtt7"]
+
+[node name="DialogueBalloon" instance=ExtResource("1_udtt7")]
+process_mode = 3
+
+[node name="PanelContainer" parent="Balloon/MarginContainer" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_udtt7")
+
+[node name="VBoxContainer" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" index="0"]
+alignment = 2
+
+[node name="CharacterLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" index="0"]
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DialogueLabel" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" index="1"]
+size_flags_vertical = 8
+horizontal_alignment = 1

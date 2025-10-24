@@ -18,13 +18,8 @@ func _input(event: InputEvent) -> void:
 		crouch_mode = 0
 		sprint_mode = 0
 
-
-func _physics_process(delta: float) -> void:
-	super(delta)
-	if Input.is_action_just_pressed("activate"):
-		var interactive = %InteractRayCast3D.interactive
-		if interactive.has_method("interact"):
-			interactive.interact()
+	if event.is_action_pressed("activate"):
+		%InteractRayCast3D.interact()
 
 
 func _on_interactive_focused(_target: Interactive3D) -> void:
