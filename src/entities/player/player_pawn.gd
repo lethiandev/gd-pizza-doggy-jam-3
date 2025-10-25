@@ -1,10 +1,40 @@
 extends "res://addons/character_controller/character.gd"
 
+@onready var STAMINA_BAR: Range = %StaminaBar
+
+var stamina_max := 3.0
+var stamina_timer := 0.0
+var stamina := stamina_max
+
 
 func _ready():
 	super()
 	Interactive3D.interact_focused_global.connect(_on_interactive_focused)
 	Interactive3D.interact_blured_global.connect(_on_interactive_blured)
+	STAMINA_BAR.max_value = stamina_max
+	STAMINA_BAR.value = stamina
+
+
+func _physics_process(delta: float) -> void:
+	super(delta)
+
+	if stamina_timer > 0.0:
+		stamina_timer -= delta
+
+	if state == "sprinting":
+		stamina = max(0, stamina - delta)
+		stamina_timer = 1.5
+	elif stamina_timer <= 0.0:
+		if state == "normal" and moving:
+			stamina = min(stamina_max, stamina + delta * 0.5)
+		else:
+			stamina = min(stamina_max, stamina + delta)
+
+	can_sprint = stamina > 0
+
+	STAMINA_BAR.visible = stamina < stamina_max
+	STAMINA_BAR.max_value = stamina_max
+	STAMINA_BAR.value = stamina
 
 
 func _input(event: InputEvent) -> void:

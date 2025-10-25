@@ -127,6 +127,8 @@ var current_speed : float = 0.0
 var state : String = "normal"
 var low_ceiling : bool = false # This is for when the ceiling is too low and the player needs to crouch.
 var was_on_floor : bool = true # Was the player on the floor last frame (for landing animation)
+var moving : bool = false
+var can_sprint : bool = true
 
 # The reticle should always have a Control node as the root
 var RETICLE : Control
@@ -190,6 +192,7 @@ func _physics_process(delta): # Most things happen here.
 	# The player is not able to stand up if the ceiling is too low
 	low_ceiling = $CrouchCeilingDetection.is_colliding()
 
+	moving = not input_dir.is_zero_approx()
 	handle_state(input_dir)
 	if dynamic_fov: # This may be changed to an AnimationPlayer
 		update_camera_fov()
@@ -309,7 +312,7 @@ func check_controls(): # If you add a control, you might want to add a check for
 func handle_state(moving):
 	if sprint_enabled:
 		if sprint_mode == 0:
-			if Input.is_action_pressed(controls.SPRINT) and state != "crouching":
+			if Input.is_action_pressed(controls.SPRINT) and state != "crouching" and can_sprint:
 				if moving:
 					if state != "sprinting":
 						enter_sprint_state()
@@ -320,8 +323,10 @@ func handle_state(moving):
 				enter_normal_state()
 		elif sprint_mode == 1:
 			if moving:
+				if not can_sprint and state == "sprinting":
+					enter_normal_state()
 				# If the player is holding sprint before moving, handle that scenario
-				if Input.is_action_just_pressed(controls.SPRINT):
+				if Input.is_action_just_pressed(controls.SPRINT) and can_sprint:
 					match state:
 						"normal":
 							enter_sprint_state()

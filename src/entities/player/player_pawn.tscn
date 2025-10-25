@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bepk21ha1i42i"]
+[gd_scene load_steps=13 format=3 uid="uid://bepk21ha1i42i"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/character_controller/character.tscn" id="1_d12nn"]
 [ext_resource type="Material" uid="uid://wgfc11e4oo3h" path="res://common/materials/prototype_green_material.tres" id="2_3icub"]
 [ext_resource type="Script" uid="uid://dp4ihogng1egp" path="res://entities/player/player_pawn.gd" id="2_b6yo5"]
 [ext_resource type="Script" uid="uid://cx77l2vj57d67" path="res://common/interactive/interact_ray_cast_3d.gd" id="4_22rpl"]
+[ext_resource type="Texture2D" uid="uid://g4rwwhm06yll" path="res://entities/player/stamina/stamina_background.png" id="5_d20bh"]
+[ext_resource type="Texture2D" uid="uid://bvdi2va5uxheo" path="res://entities/player/stamina/stamina_progress.png" id="6_320e5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d12nn"]
 material = ExtResource("2_3icub")
@@ -150,7 +152,10 @@ _data = {
 radius = 0.25
 
 [node name="PlayerPawn" node_paths=PackedStringArray("CROUCH_ANIMATION") instance=ExtResource("1_d12nn")]
+wall_min_slide_angle = 0.08726646
+floor_constant_speed = true
 script = ExtResource("2_b6yo5")
+sprint_speed = 5.0
 mouse_sensitivity = 0.4
 default_reticle = "uid://coqpusufa8a6k"
 CROUCH_ANIMATION = NodePath("CrouchAnimation2")
@@ -197,6 +202,32 @@ metadata/_custom_type_script = "uid://cx77l2vj57d67"
 light_energy = 0.1
 omni_range = 4.0
 omni_shadow_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="UserInterface" index="1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="StaminaBar" type="TextureProgressBar" parent="UserInterface/CenterContainer" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 16)
+layout_mode = 2
+mouse_filter = 2
+step = 0.001
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_under = ExtResource("5_d20bh")
+texture_progress = ExtResource("6_320e5")
 
 [node name="CrouchCeilingDetection" parent="." index="6"]
 shape = SubResource("SphereShape3D_3icub")
