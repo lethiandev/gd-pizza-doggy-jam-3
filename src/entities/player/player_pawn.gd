@@ -15,6 +15,11 @@ func _ready():
 	STAMINA_BAR.value = stamina
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED:
+		STAMINA_BAR.visible = false
+
+
 func _physics_process(delta: float) -> void:
 	super(delta)
 
