@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c1kdy564smwan"
+path="res://.godot/imported/level_begin.dialogue-a9d3625e507805119adeb4b5627c517f.tres"
+
+[deps]
+
+source_file="res://levels/woods/dialogues/level_begin.dialogue"
+dest_files=["res://.godot/imported/level_begin.dialogue-a9d3625e507805119adeb4b5627c517f.tres"]
+
+[params]
+
+defaults=true
