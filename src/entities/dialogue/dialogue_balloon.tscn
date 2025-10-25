@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw0le1oopljp7"]
+[gd_scene load_steps=4 format=3 uid="uid://cw0le1oopljp7"]
 
 [ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://addons/dialogue_manager/example_balloon/example_balloon.tscn" id="1_udtt7"]
+[ext_resource type="Script" uid="uid://c40lytv4de2dj" path="res://entities/dialogue/dialogue_balloon.gd" id="2_a7oht"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_udtt7"]
 
 [node name="DialogueBalloon" instance=ExtResource("1_udtt7")]
 process_mode = 3
+layer = 101
+script = ExtResource("2_a7oht")
 
 [node name="PanelContainer" parent="Balloon/MarginContainer" index="0"]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_udtt7")
