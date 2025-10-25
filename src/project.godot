@@ -15,7 +15,7 @@ universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
 [application]
 
 config/name="Pizza Doggy Jam #3"
-run/main_scene="uid://b5w0qe68dyy6e"
+run/main_scene="uid://cdner66ql4iqa"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 

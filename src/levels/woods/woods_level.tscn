@@ -1,0 +1,45 @@
+[gd_scene load_steps=12 format=3 uid="uid://cdner66ql4iqa"]
+
+[ext_resource type="PackedScene" uid="uid://cft2r1s8jhjus" path="res://levels/base_level.tscn" id="1_r2aq1"]
+[ext_resource type="Script" uid="uid://83jeuwwwn5l7" path="res://addons/zylann.hterrain/hterrain.gd" id="2_j1m14"]
+[ext_resource type="Script" uid="uid://w5qs0uclwbud" path="res://levels/woods/woods_level.gd" id="2_nrp03"]
+[ext_resource type="Script" uid="uid://cw06sglfb62kg" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_g0j71"]
+[ext_resource type="Resource" uid="uid://ce5da7yqqt2ts" path="res://levels/woods/terrain_data/data.hterrain" id="3_x5a17"]
+[ext_resource type="Shader" uid="uid://b5vppfdsbbevf" path="res://levels/woods/textures/_simple4_lite.gdshader" id="4_aa6yl"]
+[ext_resource type="Texture2D" uid="uid://cd5434tyyor8i" path="res://levels/woods/textures/grass_1.png" id="5_x5a17"]
+[ext_resource type="PackedScene" uid="uid://bepk21ha1i42i" path="res://entities/player/player_pawn.tscn" id="6_k11aq"]
+[ext_resource type="Texture2D" uid="uid://cvv220gc5b6bg" path="res://levels/woods/textures/dirt_3.png" id="7_ijluo"]
+[ext_resource type="PackedScene" uid="uid://d1dgxjt2d1snt" path="res://levels/woods/props/car_ford_1980/car_ford_1980.glb" id="9_70kvc"]
+
+[sub_resource type="Resource" id="Resource_x5a17"]
+script = ExtResource("3_g0j71")
+mode = 0
+textures = [[ExtResource("5_x5a17"), ExtResource("7_ijluo")], [null, null]]
+
+[node name="WoodsLevel" instance=ExtResource("1_r2aq1")]
+script = ExtResource("2_nrp03")
+
+[node name="HTerrain" type="Node3D" parent="Environment" index="0"]
+script = ExtResource("2_j1m14")
+centered = true
+_terrain_data = ExtResource("3_x5a17")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Custom"
+custom_shader = ExtResource("4_aa6yl")
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_x5a17")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 5.0
+shader_params/u_depth_blending = false
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0.3, 0.2, 0.5, 0.1)
+metadata/_custom_type_script = "uid://83jeuwwwn5l7"
+
+[node name="CarFord1980" parent="Environment" index="1" instance=ExtResource("9_70kvc")]
+transform = Transform3D(0.6079277, -0.22059801, -0.76273215, 0.18431495, 0.97359645, -0.134678, 0.77230304, -0.058708437, 0.63253576, -0.6131277, 0.6413772, 3.2134485)
+
+[node name="PlayerPawn" parent="ActiveNodes" index="0" instance=ExtResource("6_k11aq")]

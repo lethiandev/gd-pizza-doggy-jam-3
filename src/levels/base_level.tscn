@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cft2r1s8jhjus"]
+
+[ext_resource type="Script" uid="uid://c7te14s58f17d" path="res://levels/base_level.gd" id="1_wevqg"]
+
+[sub_resource type="Environment" id="Environment_wevqg"]
+
+[node name="BaseLevel" type="Node3D"]
+script = ExtResource("1_wevqg")
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wevqg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.7071068, -0.61237246, 0.35355338, 0, 0.49999997, 0.86602545, -0.7071068, -0.61237246, 0.35355338, 0, 4, 0)
+shadow_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Environment" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="ActiveNodes" type="Node" parent="."]
+
+[node name="InactiveNodes" type="Node" parent="."]
+process_mode = 4
