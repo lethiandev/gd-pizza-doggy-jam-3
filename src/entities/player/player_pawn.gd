@@ -2,7 +2,7 @@ extends "res://addons/character_controller/character.gd"
 
 @onready var STAMINA_BAR: Range = %StaminaBar
 
-var stamina_max := 3.0
+var stamina_max := 4.5
 var stamina_timer := 0.0
 var stamina := stamina_max
 
@@ -13,6 +13,11 @@ func _ready():
 	Interactive3D.interact_blured_global.connect(_on_interactive_blured)
 	STAMINA_BAR.max_value = stamina_max
 	STAMINA_BAR.value = stamina
+
+	character_jumped.connect(func ():
+		stamina = max(0, stamina - 0.7)
+		stamina_timer = 2.0
+	)
 
 
 func _notification(what: int) -> void:
@@ -28,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 	if state == "sprinting":
 		stamina = max(0, stamina - delta)
-		stamina_timer = 1.5
+		stamina_timer = 2.0
 	elif stamina_timer <= 0.0:
 		if state == "normal" and moving:
 			stamina = min(stamina_max, stamina + delta * 0.5)

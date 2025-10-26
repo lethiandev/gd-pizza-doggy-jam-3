@@ -171,6 +171,7 @@ controls = {
 }
 controller_support = true
 look_sensitivity = 0.05
+continuous_jumping = false
 pausing_enabled = false
 
 [node name="Mesh" parent="." index="0"]
@@ -187,6 +188,9 @@ active = false
 libraries = {
 &"": SubResource("AnimationLibrary_5e5t5")
 }
+
+[node name="Camera" parent="Head" index="0"]
+far = 100.0
 
 [node name="InteractRayCast3D" type="RayCast3D" parent="Head/Camera" index="0" node_paths=PackedStringArray("exceptions")]
 unique_name_in_owner = true
