@@ -1,8 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=29 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://hutuis63hgev" path="res://addons/character_controller/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://dgfl3skp075ft" path="res://addons/character_controller/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" uid="uid://u5u7xxlvmcxx" path="res://addons/character_controller/debug.gd" id="3_x1wcc"]
+[ext_resource type="Script" uid="uid://sbyo3raunkd8" path="res://addons/character_controller/footsteps_ray.gd" id="4_itf46"]
+[ext_resource type="AudioStream" uid="uid://d1dxsxaf7lq0p" path="res://entities/player/sfx/footsteps_grass.wav" id="5_2s5e5"]
+[ext_resource type="AudioStream" uid="uid://bjt7vh6sy6ndh" path="res://entities/player/sfx/jump_1.wav" id="6_7j8er"]
+[ext_resource type="AudioStream" uid="uid://d38xlmootj2wq" path="res://entities/player/sfx/jump_2.wav" id="7_fcwsn"]
+[ext_resource type="AudioStream" uid="uid://bm4cgo2b2yjnk" path="res://entities/player/sfx/jump_3.wav" id="8_0hlni"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -201,6 +206,23 @@ tracks/1/keys = {
 "points": PackedFloat32Array(0.05, -0.25, 0, 0.2, -0.01, 0, -0.2, 0.000186046, 0.2, 0.000186046, 0.05, -0.2, -0.01, 0.2, -0.01, 0, -0.2, 0, 0.2, 0, 0.05, -0.2, -0.01, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../FootstepsRay/FootstepsPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_lrqmv"]
 resource_name = "walk"
@@ -227,6 +249,23 @@ tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(-0.05, -0.25, 0, 0.2, 0.005, 0, -0.2, 0.000186046, 0.2, 0.000186046, -0.05, -0.2, 0.005, 0.2, 0.005, 0, -0.2, 0, 0.2, 0, -0.05, -0.2, 0.005, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../FootstepsRay/FootstepsPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0unb"]
@@ -277,6 +316,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.0349066, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../JumpPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_3eyjl"]
@@ -380,6 +433,18 @@ MarginContainer/constants/margin_top = 10
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_itf46"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("5_2s5e5")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2s5e5"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("6_7j8er")
+stream_1/stream = ExtResource("7_fcwsn")
+stream_2/stream = ExtResource("8_0hlni")
+
 [node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_0t4e8")
@@ -453,3 +518,19 @@ target_position = Vector3(0, 0.5, 0)
 
 [node name="EditorModule" type="Node" parent="."]
 script = ExtResource("3_v3ckk")
+
+[node name="FootstepsRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+hit_from_inside = true
+script = ExtResource("4_itf46")
+footstep_library = Dictionary[StringName, AudioStream]({
+&"default": SubResource("AudioStreamRandomizer_itf46")
+})
+
+[node name="FootstepsPlayer" type="AudioStreamPlayer" parent="FootstepsRay"]
+volume_db = -20.0
+
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_2s5e5")
+volume_db = -5.0
+pitch_scale = 0.9

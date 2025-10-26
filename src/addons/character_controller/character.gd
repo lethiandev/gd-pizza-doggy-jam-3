@@ -5,6 +5,8 @@
 
 extends CharacterBody3D
 
+signal character_jumped()
+signal character_landed()
 
 #region Character Export Group
 
@@ -217,11 +219,13 @@ func handle_jumping():
 			if Input.is_action_pressed(controls.JUMP) and is_on_floor() and !low_ceiling:
 				if jump_animation:
 					JUMP_ANIMATION.play("jump", 0.25)
+					character_jumped.emit()
 				velocity.y += jump_velocity # Adding instead of setting so jumping on slopes works properly
 		else:
 			if Input.is_action_just_pressed(controls.JUMP) and is_on_floor() and !low_ceiling:
 				if jump_animation:
 					JUMP_ANIMATION.play("jump", 0.25)
+					character_jumped.emit()
 				velocity.y += jump_velocity
 
 
@@ -433,6 +437,8 @@ func play_jump_animation():
 			JUMP_ANIMATION.play("land_left", 0.25)
 		else:
 			JUMP_ANIMATION.play("land_center", 0.25)
+
+		character_landed.emit()
 
 #endregion
 
