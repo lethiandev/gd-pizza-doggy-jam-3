@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bepk21ha1i42i"]
+[gd_scene load_steps=15 format=3 uid="uid://bepk21ha1i42i"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/character_controller/character.tscn" id="1_d12nn"]
 [ext_resource type="Material" uid="uid://wgfc11e4oo3h" path="res://common/materials/prototype_green_material.tres" id="2_3icub"]
 [ext_resource type="Script" uid="uid://dp4ihogng1egp" path="res://entities/player/player_pawn.gd" id="2_b6yo5"]
 [ext_resource type="Script" uid="uid://cx77l2vj57d67" path="res://common/interactive/interact_ray_cast_3d.gd" id="4_22rpl"]
+[ext_resource type="Script" uid="uid://bfhig62n4sr3n" path="res://entities/player/trigger_look_at.gd" id="4_ee0k1"]
 [ext_resource type="AnimationLibrary" uid="uid://l7sx0bbc6g46" path="res://entities/player/hit_animation.res" id="5_320e5"]
 [ext_resource type="Texture2D" uid="uid://g4rwwhm06yll" path="res://entities/player/stamina/stamina_background.png" id="5_d20bh"]
 [ext_resource type="Texture2D" uid="uid://bvdi2va5uxheo" path="res://entities/player/stamina/stamina_progress.png" id="6_320e5"]
@@ -152,7 +153,9 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_3icub"]
 radius = 0.25
 
-[node name="PlayerPawn" node_paths=PackedStringArray("CROUCH_ANIMATION") instance=ExtResource("1_d12nn")]
+[node name="PlayerPawn" node_paths=PackedStringArray("CROUCH_ANIMATION") groups=["player"] instance=ExtResource("1_d12nn")]
+collision_layer = 2
+collision_mask = 5
 wall_min_slide_angle = 0.08726646
 floor_constant_speed = true
 script = ExtResource("2_b6yo5")
@@ -190,6 +193,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_5e5t5")
 }
 
+[node name="TriggerLookAt" type="Node" parent="." index="4"]
+process_mode = 3
+script = ExtResource("4_ee0k1")
+
 [node name="Camera" parent="Head" index="0"]
 far = 100.0
 
@@ -204,7 +211,7 @@ exceptions = [NodePath("../../..")]
 metadata/_custom_type_script = "uid://cx77l2vj57d67"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera" index="1"]
-transform = Transform3D(0.99971586, 1.990583e-09, -0.023838934, -0.0011491522, 0.9988375, -0.048191067, 0.023811223, 0.048204765, 0.99855363, -0.09780204, -0.31787848, 4.2750643e-09)
+transform = Transform3D(0.9997159, 0.0008045246, -0.023825355, -0.0011491522, 0.99989486, -0.014454585, 0.023811223, 0.01447786, 0.9996116, -0.23855102, -0.3177167, -0.0033523536)
 shadow_enabled = true
 shadow_bias = 0.1
 spot_range = 10.0
@@ -249,6 +256,6 @@ stretch_margin_bottom = 6
 texture_under = ExtResource("5_d20bh")
 texture_progress = ExtResource("6_320e5")
 
-[node name="CrouchCeilingDetection" parent="." index="6"]
+[node name="CrouchCeilingDetection" parent="." index="7"]
 shape = SubResource("SphereShape3D_3icub")
 target_position = Vector3(0, 1, 0)

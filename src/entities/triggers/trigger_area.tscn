@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://v1vkirim8nct"]
+
+[ext_resource type="Script" uid="uid://dqxieu5kryko2" path="res://entities/triggers/trigger_area.gd" id="1_m7ut5"]
+
+[node name="TriggerArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_m7ut5")

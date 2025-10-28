@@ -63,6 +63,11 @@ func _input(event: InputEvent) -> void:
 		%InteractRayCast3D.interact()
 
 
+func trigger_look_at(node: Node3D, timer: float = 0.5) -> void:
+	var target := node.global_position
+	$TriggerLookAt.look_at(target, timer)
+
+
 func _on_interactive_focused(_target: Interactive3D) -> void:
 	RETICLE.dot_size = 2.0
 
