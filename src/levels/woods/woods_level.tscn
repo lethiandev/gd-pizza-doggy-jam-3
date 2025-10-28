@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cdner66ql4iqa"]
+[gd_scene load_steps=39 format=3 uid="uid://cdner66ql4iqa"]
 
 [ext_resource type="PackedScene" uid="uid://cft2r1s8jhjus" path="res://levels/base_level.tscn" id="1_r2aq1"]
 [ext_resource type="Script" uid="uid://w5qs0uclwbud" path="res://levels/woods/woods_level.gd" id="2_nrp03"]
@@ -27,6 +27,10 @@
 [ext_resource type="Texture2D" uid="uid://biycectb82xld" path="res://levels/woods/props/campsite/tent_Shelter_tent.png" id="22_qqukh"]
 [ext_resource type="PackedScene" uid="uid://445kdjq0qghv" path="res://levels/woods/props/campsite/torchlight.glb" id="24_63eho"]
 [ext_resource type="PackedScene" uid="uid://byyp4icli58lm" path="res://levels/woods/props/campsite/backpack.glb" id="24_tb12c"]
+[ext_resource type="Material" uid="uid://bi4fwu6ooujau" path="res://levels/woods/cabin/wood_wall_material.res" id="27_jcrj4"]
+[ext_resource type="Material" uid="uid://bel4t36wdhccw" path="res://levels/woods/cabin/wood_floor_material.res" id="28_3yyw8"]
+[ext_resource type="PackedScene" uid="uid://v1vkirim8nct" path="res://entities/triggers/trigger_area.tscn" id="30_wn8os"]
+[ext_resource type="Resource" uid="uid://kgvhsu2gxh4f" path="res://levels/woods/dialogues/trg_cabin_enter.dialogue" id="31_tceo0"]
 
 [sub_resource type="Environment" id="Environment_nivhs"]
 ambient_light_source = 2
@@ -49,6 +53,15 @@ resource_name = "Shelter_tent"
 cull_mode = 2
 albedo_color = Color(0.8708631, 7.104099e-05, 0.6779436, 1)
 albedo_texture = ExtResource("22_qqukh")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3yyw8"]
+points = PackedVector3Array(0.75, -0.25012237, 1.25, -0.75, -0.25012237, 1.25, 0.75, -1.25, 1.25, 0.75, -2.4437904e-05, 0.74997556, -0.75, -1.25, 1.25, -0.75, -2.4437904e-05, 0.74997556, 0.75, -1.25, 0.8659456, 0.75, 0.5, -0.25007343, -0.75, -1.25, 0.8659456, -0.75, 0.5, -0.25007343, 0.75, 0.28793073, -0.5, 0.75, 0.5, -0.5, -0.75, 0.28793073, -0.5, -0.75, 0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wn8os"]
+points = PackedVector3Array(0.75, -2.2501957, 2.75, -0.75, -2.2501957, 2.75, 0.75, -2.75, 2.75, 0.75, 0.25, 0.24980423, -0.75, -2.75, 2.75, -0.75, 0.25, 0.24980423, 0.75, -2.75, 2.5353367, 0.75, 0.25, -0.25, -0.75, -2.75, 2.5353367, -0.75, 0.25, -0.25, 0.75, -2.2032106, 2, 0.75, 0.09553647, -0.25, -0.75, -2.2032106, 2, -0.75, 0.09553647, -0.25, 0.75, -0.15994525, -9.788573e-05, -0.75, -0.15994525, -9.788573e-05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3yyw8"]
+size = Vector3(1.25, 2.25, 1)
 
 [node name="WoodsLevel" instance=ExtResource("1_r2aq1")]
 script = ExtResource("2_nrp03")
@@ -229,7 +242,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3844357, 0, 2.7858505)
 surface_material_override/0 = SubResource("StandardMaterial3D_tb12c")
 
 [node name="backpack" parent="Environment/Campsite" index="2" instance=ExtResource("24_tb12c")]
-transform = Transform3D(0.6157501, 0.7420516, 0.264974, -0.013776374, -0.3260962, 0.94523615, 0.787821, -0.58567965, -0.19057097, -3.078991, 0.078364134, 1.9747124)
+transform = Transform3D(0.7401001, 0.93575954, 0.12886363, -0.005737658, -0.15925069, 1.1893723, 0.94457346, -0.7341616, -0.09374367, -3.0461297, 0.19558923, 1.9510784)
 
 [node name="torchlight" parent="Environment/Campsite" index="3" instance=ExtResource("24_63eho")]
 transform = Transform3D(0.825446, 0.040620085, 0.5630177, -0.03355738, 0.99917465, -0.02288872, -0.56348276, 1.8626451e-09, 0.8261278, 2.9802656, -0.053718925, -4.455864)
@@ -239,10 +252,320 @@ transform = Transform3D(-0.004188789, 0, 0.9999912, 0, 1, 0, -0.9999913, 0, -0.0
 spot_range = 8.320799
 spot_angle = 21.823149
 
-[node name="PlayerPawn" parent="ActiveNodes" index="0" instance=ExtResource("6_k11aq")]
-transform = Transform3D(-0.90002984, 0, 0.4358283, 0, 1, 0, -0.4358283, 0, -0.90002984, -23.234247, 1.459245, -61.229176)
+[node name="Cabin" type="Node3D" parent="Environment" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.01883, 0.81546783, -88.03296)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="CarSedan" parent="." index="4" instance=ExtResource("16_nivhs")]
+[node name="Walls" type="CSGCombiner3D" parent="Environment/Cabin" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53856516, 0)
+material_override = ExtResource("27_jcrj4")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/Walls" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0.064453125)
+size = Vector3(7.25, 2.75, 6.8710938)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Cabin/Walls" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.625, 0.052001953)
+operation = 2
+size = Vector3(6.75, 3.25, 6.395996)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Cabin/Walls" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9536133, 3.5)
+operation = 2
+size = Vector3(1, 2.4072266, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Cabin/Walls" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.4536133, 3.5)
+operation = 2
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Cabin/Walls" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.4536133, 1.6113129)
+operation = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Cabin/Walls" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.4536133, -1.6091232)
+operation = 2
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Cabin/Walls" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.4536133, 2.0168533)
+operation = 2
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Cabin/Walls" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.4536133, 3.5)
+operation = 2
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Cabin/Walls" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.375, 1.375, -0.3461914)
+size = Vector3(4.25, 2.75, 0.19238281)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Cabin/Walls" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625, 1.375, -1.75)
+size = Vector3(0.25, 2.75, 3)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Cabin/Walls" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.9536133, -2)
+operation = 2
+size = Vector3(1, 2.4072266, 1)
+
+[node name="Floor" type="CSGCombiner3D" parent="Environment/Cabin" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03856516, 0)
+material_override = ExtResource("28_3yyw8")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/Floor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0.875)
+size = Vector3(7.25, 0.25, 8.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Cabin/Floor" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, -2.125, 1)
+size = Vector3(0.5, 5.25, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Cabin/Floor" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, -2.125, 4.75)
+size = Vector3(0.5, 5.25, 0.5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Cabin/Floor" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, -2.125, 4.75)
+size = Vector3(0.5, 5.25, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Cabin/Floor" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, -2.125, 1)
+size = Vector3(0.5, 5.25, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Cabin/Floor" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, -2.125, -3)
+size = Vector3(0.5, 5.25, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Cabin/Floor" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, -2.125, -3)
+size = Vector3(0.5, 5.25, 0.5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Cabin/Floor" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0101318, 0, -1.375)
+operation = 2
+size = Vector3(1.9797363, 1, 1.25)
+
+[node name="Stairs" type="CSGCombiner3D" parent="Environment/Cabin" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4581013, 0.03949237, 5.6039963)
+material_override = ExtResource("28_3yyw8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/Stairs" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.375)
+size = Vector3(1.5, 1, 0.25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Cabin/Stairs" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(1.5, 1, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Cabin/Stairs" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.375)
+size = Vector3(1.5, 1, 0.75)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Cabin/Stairs" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0.875)
+size = Vector3(1.5, 1, 0.75)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Cabin/Stairs" index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, -0.43345454, -0.25025177)
+operation = 2
+size = Vector3(3, 2.75, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Cabin/Stairs" index="5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Cabin/Stairs/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_3yyw8")
+
+[node name="Stairs2" type="CSGCombiner3D" parent="Environment/Cabin" index="3"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.145155, 0.28438818, -1.3960036)
+material_override = ExtResource("28_3yyw8")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="0"]
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.25)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.5)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0.75)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 1.25)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 1.5)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 1.75)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 2)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 2.25)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 2.5)
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="11"]
+transform = Transform3D(1, 0, 0, 0, 0.7146314, 0.6995013, 0, -0.6995013, 0.7146314, 0, -1.4705019, 0.5834284)
+operation = 2
+size = Vector3(3, 5.5, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Cabin/Stairs2" index="12"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Cabin/Stairs2/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_wn8os")
+
+[node name="Rails" type="CSGCombiner3D" parent="Environment/Cabin" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 3.5)
+material_override = ExtResource("27_jcrj4")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/Rails" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25181913, 0.68463135)
+size = Vector3(7.1486816, 0.122558594, 1.8692627)
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="Environment/Cabin/Rails" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.8962079, -0.4436344, 0, 0.4436344, 0.8962079, 1.4658203, -0.097691774, 2.2887573)
+size = Vector3(1.5119629, 0.122558594, 1.5781279)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Cabin/Rails" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012817383, 0, 0.4887085)
+operation = 2
+size = Vector3(6.831787, 2, 1.977417)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Cabin/Rails" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4635315, -0.375, 2.3295898)
+operation = 2
+size = Vector3(1.1660156, 1.75, 2.6591797)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Cabin/Rails" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.54151344, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Cabin/Rails" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.064546585, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Cabin/Rails" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44685173, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Cabin/Rails" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96253395, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Cabin/Rails" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4917812, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Cabin/Rails" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0683231, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Cabin/Rails" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5893898, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Environment/Cabin/Rails" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.109089, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Environment/Cabin/Rails" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.498293, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Environment/Cabin/Rails" index="13"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5085506, -0.27764893, 1.1565628)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Environment/Cabin/Rails" index="14"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5085506, -0.27764893, 0.6682739)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Environment/Cabin/Rails" index="15"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5085506, -0.27764893, 0.19197083)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Cabin/Rails" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3163662, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Cabin/Rails" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7145233, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Cabin/Rails" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0780277, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Cabin/Rails" index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4779434, -0.27764893, 1.5441742)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Cabin/Rails" index="20"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 3.4970036, -0.27764893, 1.1405106)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Cabin/Rails" index="21"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 3.4970036, -0.27764893, 0.6921082)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Cabin/Rails" index="22"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 3.4970036, -0.27764893, 0.20513162)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Environment/Cabin/Rails" index="23"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 2.1264613, -0.52590215, 2.0664444)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="Environment/Cabin/Rails" index="24"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0.7948173, -0.52590215, 2.0664444)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Environment/Cabin/Rails" index="25"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 2.1264613, -0.74268174, 2.6214523)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Environment/Cabin/Rails" index="26"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0.7878612, -0.74268174, 2.6214523)
+size = Vector3(0.1385498, 1.0286865, 0.08555603)
+
+[node name="CarSedan2" parent="Environment" index="7" instance=ExtResource("16_nivhs")]
 transform = Transform3D(0.46235234, -0.021199787, 0.8864429, -2.3283064e-10, 0.99971414, 0.023908734, -0.8866963, -0.011054255, 0.4622201, -29.473612, 1.6564254, -60.472298)
+
+[node name="PlayerPawn" parent="ActiveNodes" index="0" instance=ExtResource("6_k11aq")]
+transform = Transform3D(-0.90002984, 0, 0.4358283, 0, 1, 0, -0.4358283, 0, -0.90002984, 25.364445, 0.80102086, -80.1469)
+
+[node name="TriggerArea" parent="ActiveNodes" index="1" instance=ExtResource("30_wn8os")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.00513, 1.354033, -85.43884)
+dialogue = ExtResource("31_tceo0")
+look_at_node = NodePath("LookAt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ActiveNodes/TriggerArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+shape = SubResource("BoxShape3D_3yyw8")
+
+[node name="LookAt" type="Marker3D" parent="ActiveNodes/TriggerArea" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.095272, 1.4863348, -1.1618958)
 
 [editable path="Environment/Campsite/tent2"]

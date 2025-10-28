@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://kgvhsu2gxh4f"
+path="res://.godot/imported/trg_cabin_enter.dialogue-c7383ef45809222adb6a852ad61c6846.tres"
+
+[deps]
+
+source_file="res://levels/woods/dialogues/trg_cabin_enter.dialogue"
+dest_files=["res://.godot/imported/trg_cabin_enter.dialogue-c7383ef45809222adb6a852ad61c6846.tres"]
+
+[params]
+
+defaults=true
