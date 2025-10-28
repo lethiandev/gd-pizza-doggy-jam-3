@@ -707,6 +707,9 @@ static func _generate_multimesh(resolution: int, density: float, mesh: Mesh, mul
 	multimesh.instance_count = total_instance_count
 	multimesh.mesh = mesh
 
+	# Make randomness static
+	seed(1)
+
 	# First pass ensures uniform spread
 	var i := 0
 	for z in resolution:
