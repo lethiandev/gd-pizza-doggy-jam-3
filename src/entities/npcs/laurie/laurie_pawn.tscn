@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7ry0uovm5ug8"]
+
+[ext_resource type="PackedScene" uid="uid://c8yh1uvg1ofjy" path="res://entities/npcs/laurie/model/female_secretary_skin.tscn" id="1_nyter"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nyter"]
+radius = 0.25
+height = 1.8
+
+[node name="LauriePawn" type="CharacterBody3D"]
+
+[node name="FemaleSecretarySkin" parent="." instance=ExtResource("1_nyter")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_nyter")

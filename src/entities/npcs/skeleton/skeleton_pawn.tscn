@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck1gl3on3kpn6"]
+
+[ext_resource type="PackedScene" uid="uid://dlwv5qsd0jm7s" path="res://entities/npcs/skeleton/model/skeleton_skin.tscn" id="1_7qgqu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7qgqu"]
+radius = 0.25
+height = 1.8
+
+[node name="SkeletonPawn" type="CharacterBody3D"]
+
+[node name="SkeletonSkin" parent="." instance=ExtResource("1_7qgqu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_7qgqu")

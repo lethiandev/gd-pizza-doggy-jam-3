@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://chc6hpenfq2ae"]
+
+[ext_resource type="Texture2D" uid="uid://bc2mk8yc8dy43" path="res://entities/npcs/jimmy/model/man_tex.png" id="1_55ie8"]
+
+[resource]
+resource_name = "hero"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_55ie8")
+emission_enabled = true

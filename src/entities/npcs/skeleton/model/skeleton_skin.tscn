@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlwv5qsd0jm7s"]
+
+[ext_resource type="PackedScene" uid="uid://olxbnxlp3ggv" path="res://entities/npcs/skeleton/model/skeleton.fbx" id="1_vg7ht"]
+
+[node name="SkeletonSkin" instance=ExtResource("1_vg7ht")]

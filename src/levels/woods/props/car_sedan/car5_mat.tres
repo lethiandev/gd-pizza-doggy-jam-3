@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://o1aka4hdkj23"]
+
+[ext_resource type="Texture2D" uid="uid://2twq6eniyujm" path="res://levels/woods/props/car_sedan/car_sedan_car5.png" id="1_ojc08"]
+
+[resource]
+resource_name = "car5_mat"
+cull_mode = 2
+albedo_texture = ExtResource("1_ojc08")
+roughness = 0.89459074
+texture_filter = 2

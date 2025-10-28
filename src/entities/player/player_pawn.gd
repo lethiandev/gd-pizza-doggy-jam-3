@@ -1,6 +1,7 @@
 extends "res://addons/character_controller/character.gd"
 
 @onready var STAMINA_BAR: Range = %StaminaBar
+@onready var HIT_ANIMATION: AnimationPlayer = $Head/HitAnimation
 
 var stamina_max := 4.5
 var stamina_timer := 0.0

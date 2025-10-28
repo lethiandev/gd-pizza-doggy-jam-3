@@ -1,45 +1,225 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdner66ql4iqa"]
+[gd_scene load_steps=30 format=3 uid="uid://cdner66ql4iqa"]
 
 [ext_resource type="PackedScene" uid="uid://cft2r1s8jhjus" path="res://levels/base_level.tscn" id="1_r2aq1"]
-[ext_resource type="Script" uid="uid://83jeuwwwn5l7" path="res://addons/zylann.hterrain/hterrain.gd" id="2_j1m14"]
 [ext_resource type="Script" uid="uid://w5qs0uclwbud" path="res://levels/woods/woods_level.gd" id="2_nrp03"]
 [ext_resource type="Script" uid="uid://cw06sglfb62kg" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_g0j71"]
+[ext_resource type="Script" uid="uid://cmhhmvbejymjg" path="res://levels/woods/h_terrain.gd" id="3_oq45j"]
 [ext_resource type="Resource" uid="uid://ce5da7yqqt2ts" path="res://levels/woods/terrain_data/data.hterrain" id="3_x5a17"]
-[ext_resource type="Shader" uid="uid://b5vppfdsbbevf" path="res://levels/woods/textures/_simple4_lite.gdshader" id="4_aa6yl"]
+[ext_resource type="Shader" uid="uid://b5vppfdsbbevf" path="res://levels/woods/textures/_simple4_lite.gdshader" id="5_63eho"]
 [ext_resource type="Texture2D" uid="uid://cd5434tyyor8i" path="res://levels/woods/textures/grass_1.png" id="5_x5a17"]
 [ext_resource type="PackedScene" uid="uid://bepk21ha1i42i" path="res://entities/player/player_pawn.tscn" id="6_k11aq"]
 [ext_resource type="Texture2D" uid="uid://cvv220gc5b6bg" path="res://levels/woods/textures/dirt_3.png" id="7_ijluo"]
-[ext_resource type="PackedScene" uid="uid://d1dgxjt2d1snt" path="res://levels/woods/props/car_ford_1980/car_ford_1980.glb" id="9_70kvc"]
+[ext_resource type="Texture2D" uid="uid://c8ymr1ybr7ma4" path="res://levels/woods/textures/asphalt.png" id="9_f7bu3"]
+[ext_resource type="Script" uid="uid://cmsx7qhhep0l6" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="10_j5vx0"]
+[ext_resource type="PackedScene" uid="uid://d0vxiuyifr1ut" path="res://levels/woods/props/trees/models/tree_b.glb" id="11_45c3t"]
+[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="11_brm08"]
+[ext_resource type="Texture2D" uid="uid://d4gl42g7jto8r" path="res://levels/woods/foliage/grass_1.png" id="11_vpb8c"]
+[ext_resource type="Shader" uid="uid://cv0a45mek3vri" path="res://levels/woods/foliage/_detail.gdshader" id="12_5mxjk"]
+[ext_resource type="PackedScene" uid="uid://ks8xm0j8adqp" path="res://levels/woods/props/trees/models/tree_a.glb" id="12_65iea"]
+[ext_resource type="ArrayMesh" uid="uid://dpef2d0qcn5d4" path="res://addons/zylann.hterrain/models/grass_quad_x2.obj" id="13_soi1q"]
+[ext_resource type="Texture2D" uid="uid://xffj52ko7dxc" path="res://levels/woods/foliage/grass_2.png" id="15_nivhs"]
+[ext_resource type="PackedScene" uid="uid://dfbwm11irngfi" path="res://levels/woods/props/car_sedan/car_sedan.glb" id="16_nivhs"]
+[ext_resource type="PackedScene" uid="uid://cx2o3dmar11jx" path="res://levels/woods/props/campsite/tent.glb" id="19_eyhg4"]
+[ext_resource type="PackedScene" uid="uid://dafnpqmcjvnm3" path="res://levels/woods/props/pipes/pipe_v1_straight.fbx" id="19_oq45j"]
+[ext_resource type="ArrayMesh" uid="uid://vf2l5goqqv40" path="res://levels/woods/props/fences/metalfence.res" id="19_x42dl"]
+[ext_resource type="Texture2D" uid="uid://biycectb82xld" path="res://levels/woods/props/campsite/tent_Shelter_tent.png" id="22_qqukh"]
+[ext_resource type="PackedScene" uid="uid://445kdjq0qghv" path="res://levels/woods/props/campsite/torchlight.glb" id="24_63eho"]
+[ext_resource type="PackedScene" uid="uid://byyp4icli58lm" path="res://levels/woods/props/campsite/backpack.glb" id="24_tb12c"]
 
-[sub_resource type="Resource" id="Resource_x5a17"]
+[sub_resource type="Environment" id="Environment_nivhs"]
+ambient_light_source = 2
+ambient_light_color = Color(0.90359825, 0.90359825, 0.9035982, 1)
+
+[sub_resource type="Resource" id="Resource_tb12c"]
 script = ExtResource("3_g0j71")
 mode = 0
-textures = [[ExtResource("5_x5a17"), ExtResource("7_ijluo")], [null, null]]
+textures = [[ExtResource("5_x5a17"), ExtResource("7_ijluo"), ExtResource("9_f7bu3")], [null, null, null]]
+
+[sub_resource type="Curve3D" id="Curve3D_nivhs"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.4363022, 0.19472224, -0.38050842, 0, 0, 0, 0, 0, 0, 5.4360466, 0.051275402, 0.70277786, 0, 0, 0, 0, 0, 0, 12.387272, 0.13228425, 1.7984924, 0, 0, 0, 0, 0, 0, 15.703335, 0.26914248, 1.8722343, 0, 0, 0, 0, 0, 0, 23.148582, 0.9567709, 2.0378036, 0, 0, 0, 0, 0, 0, 23.766827, 1.0167383, -0.8482208),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tb12c"]
+resource_name = "Shelter_tent"
+cull_mode = 2
+albedo_color = Color(0.8708631, 7.104099e-05, 0.6779436, 1)
+albedo_texture = ExtResource("22_qqukh")
 
 [node name="WoodsLevel" instance=ExtResource("1_r2aq1")]
 script = ExtResource("2_nrp03")
 
+[node name="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_nivhs")
+
+[node name="DirectionalLight3D" parent="WorldEnvironment" index="0"]
+light_energy = 0.05
+shadow_opacity = 0.8
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment" index="1"]
+transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.70710677, 0.7071068, -0.7071068, -0.5, 0.5, 0, 7.75, 0)
+editor_only = true
+metadata/_edit_lock_ = true
+
 [node name="HTerrain" type="Node3D" parent="Environment" index="0"]
-script = ExtResource("2_j1m14")
+script = ExtResource("3_oq45j")
 centered = true
 _terrain_data = ExtResource("3_x5a17")
-chunk_size = 32
+chunk_size = 16
 collision_enabled = true
 collision_layer = 1
 collision_mask = 1
 shader_type = "Custom"
-custom_shader = ExtResource("4_aa6yl")
+custom_shader = ExtResource("5_63eho")
 custom_globalmap_shader = null
-texture_set = SubResource("Resource_x5a17")
+texture_set = SubResource("Resource_tb12c")
 render_layers = 1
 cast_shadow = 1
 shader_params/u_ground_uv_scale = 5.0
 shader_params/u_depth_blending = false
 shader_params/u_triplanar = false
-shader_params/u_tile_reduction = Vector4(0.3, 0.2, 0.5, 0.1)
+shader_params/u_tile_reduction = Vector4(0.5, 0.3, 0.4, 0.35)
 metadata/_custom_type_script = "uid://83jeuwwwn5l7"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="CarFord1980" parent="Environment" index="1" instance=ExtResource("9_70kvc")]
-transform = Transform3D(0.6079277, -0.22059801, -0.76273215, 0.18431495, 0.97359645, -0.134678, 0.77230304, -0.058708437, 0.63253576, -0.6131277, 0.6413772, 3.2134485)
+[node name="HTerrainDetailLayer" type="Node3D" parent="Environment/HTerrain" index="0"]
+script = ExtResource("10_j5vx0")
+texture = ExtResource("11_vpb8c")
+custom_shader = ExtResource("12_5mxjk")
+instance_mesh = ExtResource("13_soi1q")
+shader_params/u_globalmap_tint_bottom = 0.2000000095
+shader_params/u_globalmap_tint_top = 0.0
+shader_params/u_bottom_ao = 0.2000000095
+shader_params/u_instance_scale = Vector3(0.8, 0.8, 0.8)
+shader_params/u_roughness = null
+metadata/_editor_icon = ExtResource("11_brm08")
+
+[node name="HTerrainDetailLayer2" type="Node3D" parent="Environment/HTerrain" index="1"]
+script = ExtResource("10_j5vx0")
+layer_index = 1
+texture = ExtResource("15_nivhs")
+custom_shader = ExtResource("12_5mxjk")
+instance_mesh = ExtResource("13_soi1q")
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = 0.2000000095
+shader_params/u_bottom_ao = 0.2000000095
+shader_params/u_instance_scale = null
+shader_params/u_roughness = null
+metadata/_editor_icon = ExtResource("11_brm08")
+
+[node name="CarSedan" parent="Environment" index="1" instance=ExtResource("16_nivhs")]
+transform = Transform3D(-0.2579537, 0.04128542, -0.9652749, 0.37456617, 0.9252229, -0.06052419, 0.8905954, -0.3771717, -0.25412875, -4.621908, -0.34291878, 43.42875)
+
+[node name="Trees" type="Node3D" parent="Environment" index="2"]
+metadata/_edit_lock_ = true
+
+[node name="TreeA" parent="Environment/Trees" index="0" instance=ExtResource("12_65iea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1249895, -0.021176457, 39.697704)
+
+[node name="TreeA2" parent="Environment/Trees" index="1" instance=ExtResource("12_65iea")]
+transform = Transform3D(-0.7677635, 0, 0.90704733, 0, 1.1883584, 0, -0.90704733, 0, -0.7677635, -3.4115982, -0.037103683, 31.440636)
+
+[node name="TreeA3" parent="Environment/Trees" index="2" instance=ExtResource("12_65iea")]
+transform = Transform3D(0.4368332, 0, 0.8995425, 0, 1, 0, -0.8995425, 0, 0.4368332, -7.4283686, 0.06420499, 36.5127)
+
+[node name="TreeA4" parent="Environment/Trees" index="3" instance=ExtResource("12_65iea")]
+transform = Transform3D(0.4368332, 0, 0.8995425, 0, 1, 0, -0.8995425, 0, 0.4368332, -1.8685427, -0.014634192, 37.5429)
+
+[node name="TreeA5" parent="Environment/Trees" index="4" instance=ExtResource("12_65iea")]
+transform = Transform3D(0.4368332, 0, 0.8995425, 0, 1, 0, -0.8995425, 0, 0.4368332, 8.018029, 0.19046122, 32.80916)
+metadata/_edit_group_ = true
+
+[node name="TreeA8" parent="Environment/Trees" index="5" instance=ExtResource("12_65iea")]
+transform = Transform3D(0.4368332, 0, 0.8995425, 0, 1, 0, -0.8995425, 0, 0.4368332, 8.018029, 0.19046122, 32.80916)
+metadata/_edit_group_ = true
+
+[node name="TreeA6" parent="Environment/Trees" index="6" instance=ExtResource("12_65iea")]
+transform = Transform3D(0.4368332, 0, 0.8995425, 0, 1, 0, -0.8995425, 0, 0.4368332, 9.238667, -0.022515476, 38.55131)
+
+[node name="TreeA7" parent="Environment/Trees" index="7" instance=ExtResource("12_65iea")]
+transform = Transform3D(-0.7498109, 0, 0.6616522, 0, 1, 0, -0.6616522, 0, -0.7498109, 0.06493759, -0.028115451, -13.683294)
+
+[node name="TreeB" parent="Environment/Trees" index="8" instance=ExtResource("11_45c3t")]
+transform = Transform3D(-0.29588646, 0, 1.2630053, 0, 1.2972013, 0, -1.2630053, 0, -0.29588646, -11.612593, 0.006187588, 39.094543)
+
+[node name="TreeB2" parent="Environment/Trees" index="9" instance=ExtResource("11_45c3t")]
+transform = Transform3D(0.72448474, 0, 0.6892909, 0, 1, 0, -0.6892909, 0, 0.72448474, -4.764712, -0.008289933, 36.670025)
+
+[node name="TreeB3" parent="Environment/Trees" index="10" instance=ExtResource("11_45c3t")]
+transform = Transform3D(0.72448474, 0, 0.6892909, 0, 1, 0, -0.6892909, 0, 0.72448474, 2.3611465, 7.47897e-07, -17.366102)
+
+[node name="Fences" type="Node3D" parent="Environment" index="3"]
+metadata/_edit_lock_ = true
+
+[node name="Path3D" type="Path3D" parent="Environment/Fences" index="0"]
+transform = Transform3D(-0.12022352, 0, 0.99274683, 0, 1, 0, -0.99274683, 0, -0.12022352, -25.127502, 2.5749207e-05, -22.450788)
+curve = SubResource("Curve3D_nivhs")
+
+[node name="PathMesh3D" type="PathMesh3D" parent="Environment/Fences/Path3D" index="0" node_paths=PackedStringArray("path_3d")]
+path_3d = NodePath("..")
+mesh = ExtResource("19_x42dl")
+collision_mode = 2
+convex_collision_clean = true
+convex_collision_simplify = false
+surface_0/tile_rotation = Vector3(0, 1.5707964, 0)
+surface_0/tile_rotation_order = 2
+surface_0/distribution = 0
+surface_0/alignment = 0
+surface_0/warp_along_curve = true
+surface_0/sample_cubic = false
+surface_0/tilt = true
+surface_0/offset = Vector2(0, 0)
+surface_0/triangle_count = 160
+surface_1/tile_rotation = Vector3(0, 1.5707964, 0)
+surface_1/tile_rotation_order = 2
+surface_1/distribution = 0
+surface_1/alignment = 0
+surface_1/warp_along_curve = true
+surface_1/sample_cubic = false
+surface_1/tilt = true
+surface_1/offset = Vector2(0, 0)
+surface_1/triangle_count = 10
+
+[node name="DrainPipe" type="Node3D" parent="Environment" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2469826, -0.7042825, 42.44758)
+
+[node name="pipe_v1_straight" parent="Environment/DrainPipe" index="0" instance=ExtResource("19_oq45j")]
+transform = Transform3D(38.770985, 0, 0, 0, 48.71, 0, 0, 0, 40.26973, 0.17213964, 0, 0)
+
+[node name="pipe_v1_straight2" parent="Environment/DrainPipe" index="1" instance=ExtResource("19_oq45j")]
+transform = Transform3D(38.770985, 0, 0, 0, 48.71, 0, 0, 0, 40.26973, -3.7394924, 0, 0)
+
+[node name="Campsite" type="Node3D" parent="Environment" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.033869, 1.1542983, -63.28353)
+
+[node name="tent" parent="Environment/Campsite" index="0" instance=ExtResource("19_eyhg4")]
+transform = Transform3D(0.45886666, 0, -0.88850516, 0, 1, 0, 0.88850516, 0, 0.45886666, 0.9725151, 0.29998064, -6.645241)
+
+[node name="tent2" parent="Environment/Campsite" index="1" instance=ExtResource("19_eyhg4")]
+transform = Transform3D(-0.99998546, 0, -0.005393073, 0, 1, 0, 0.005393073, 0, -0.99998546, 10.635638, 0.2999804, 0.10085297)
+
+[node name="Shelter_tent" parent="Environment/Campsite/tent2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3844357, 0, 2.7858505)
+surface_material_override/0 = SubResource("StandardMaterial3D_tb12c")
+
+[node name="backpack" parent="Environment/Campsite" index="2" instance=ExtResource("24_tb12c")]
+transform = Transform3D(0.6157501, 0.7420516, 0.264974, -0.013776374, -0.3260962, 0.94523615, 0.787821, -0.58567965, -0.19057097, -3.078991, 0.078364134, 1.9747124)
+
+[node name="torchlight" parent="Environment/Campsite" index="3" instance=ExtResource("24_63eho")]
+transform = Transform3D(0.825446, 0.040620085, 0.5630177, -0.03355738, 0.99917465, -0.02288872, -0.56348276, 1.8626451e-09, 0.8261278, 2.9802656, -0.053718925, -4.455864)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/Campsite/torchlight" index="1"]
+transform = Transform3D(-0.004188789, 0, 0.9999912, 0, 1, 0, -0.9999913, 0, -0.0041887853, -0.07249063, -1.1704102e-10, -0.00045929893)
+spot_range = 8.320799
+spot_angle = 21.823149
 
 [node name="PlayerPawn" parent="ActiveNodes" index="0" instance=ExtResource("6_k11aq")]
+transform = Transform3D(-0.90002984, 0, 0.4358283, 0, 1, 0, -0.4358283, 0, -0.90002984, -23.234247, 1.459245, -61.229176)
+
+[node name="CarSedan" parent="." index="4" instance=ExtResource("16_nivhs")]
+transform = Transform3D(0.46235234, -0.021199787, 0.8864429, -2.3283064e-10, 0.99971414, 0.023908734, -0.8866963, -0.011054255, 0.4622201, -30.044231, 1.6411116, -60.762905)
+
+[editable path="Environment/Campsite/tent2"]
