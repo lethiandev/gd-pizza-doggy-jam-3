@@ -39,6 +39,10 @@ window/stretch/scale=2.0
 
 enabled=PackedStringArray("res://addons/PathMesh3D/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 ui_accept={
@@ -137,13 +141,13 @@ look_right={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://levels/woods/dialogues/level_begin.dialogue")
+locale/translations_pot_files=PackedStringArray("res://levels/woods/dialogues/level_begin.dialogue", "res://levels/woods/dialogues/trg_cabin_enter.dialogue")
 
 [layer_names]
 
 3d_physics/layer_1="static_meshes"
-3d_physics/layer_2="characters"
-3d_physics/layer_3="reserved"
+3d_physics/layer_2="player"
+3d_physics/layer_3="characters"
 3d_physics/layer_4="interactives"
 
 [physics]
