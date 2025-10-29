@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cdner66ql4iqa"]
+[gd_scene load_steps=41 format=3 uid="uid://cdner66ql4iqa"]
 
 [ext_resource type="PackedScene" uid="uid://cft2r1s8jhjus" path="res://levels/base_level.tscn" id="1_r2aq1"]
 [ext_resource type="Script" uid="uid://w5qs0uclwbud" path="res://levels/woods/woods_level.gd" id="2_nrp03"]
@@ -32,6 +32,7 @@
 [ext_resource type="Material" uid="uid://busontt3hrdr6" path="res://levels/woods/cabin/wood_3_material.res" id="29_nyu5b"]
 [ext_resource type="PackedScene" uid="uid://v1vkirim8nct" path="res://entities/triggers/trigger_area.tscn" id="30_wn8os"]
 [ext_resource type="Resource" uid="uid://kgvhsu2gxh4f" path="res://levels/woods/dialogues/trg_cabin_enter.dialogue" id="31_tceo0"]
+[ext_resource type="PackedScene" uid="uid://deiqh58dnydcr" path="res://entities/npcs/jimmy/jimmy_pawn.tscn" id="33_oixne"]
 
 [sub_resource type="Environment" id="Environment_nivhs"]
 ambient_light_source = 2
@@ -62,7 +63,7 @@ points = PackedVector3Array(0.75, -0.25012237, 1.25, -0.75, -0.25012237, 1.25, 0
 points = PackedVector3Array(0.75, -2.2501957, 2.75, -0.75, -2.2501957, 2.75, 0.75, -2.75, 2.75, 0.75, 0.25, 0.24980423, -0.75, -2.75, 2.75, -0.75, 0.25, 0.24980423, 0.75, -2.75, 2.5353367, 0.75, 0.25, -0.25, -0.75, -2.75, 2.5353367, -0.75, 0.25, -0.25, 0.75, -2.2032106, 2, 0.75, 0.09553647, -0.25, -0.75, -2.2032106, 2, -0.75, 0.09553647, -0.25, 0.75, -0.15994525, -9.788573e-05, -0.75, -0.15994525, -9.788573e-05)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3yyw8"]
-size = Vector3(1.25, 2.25, 1)
+size = Vector3(3.4298096, 2.25, 1)
 
 [node name="WoodsLevel" instance=ExtResource("1_r2aq1")]
 script = ExtResource("2_nrp03")
@@ -231,6 +232,8 @@ transform = Transform3D(38.770985, 0, 0, 0, 48.71, 0, 0, 0, 40.26973, -3.7394924
 
 [node name="Campsite" type="Node3D" parent="Environment" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.033869, 1.1542983, -63.28353)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="tent" parent="Environment/Campsite" index="0" instance=ExtResource("19_eyhg4")]
 transform = Transform3D(0.45886666, 0, -0.88850516, 0, 1, 0, 0.88850516, 0, 0.45886666, 0.9725151, 0.29998064, -6.645241)
@@ -253,9 +256,13 @@ transform = Transform3D(-0.004188789, 0, 0.9999912, 0, 1, 0, -0.9999913, 0, -0.0
 spot_range = 8.320799
 spot_angle = 21.823149
 
-[node name="Cabin" type="Node3D" parent="Environment" index="6"]
+[node name="CarSedan2" parent="Environment" index="6" instance=ExtResource("16_nivhs")]
+transform = Transform3D(0.46235234, -0.021199787, 0.8864429, -2.3283064e-10, 0.99971414, 0.023908734, -0.8866963, -0.011054255, 0.4622201, -29.473612, 1.6564254, -60.472298)
+
+[node name="Cabin" type="Node3D" parent="Environment" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5141, 0.81546783, -88.03296)
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Walls" type="CSGCombiner3D" parent="Environment/Cabin" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53856516, 0)
@@ -629,22 +636,70 @@ operation = 2
 size = Vector3(1, 0.30880737, 1.6385498)
 material = ExtResource("27_jcrj4")
 
-[node name="CarSedan2" parent="Environment" index="7" instance=ExtResource("16_nivhs")]
-transform = Transform3D(0.46235234, -0.021199787, 0.8864429, -2.3283064e-10, 0.99971414, 0.023908734, -0.8866963, -0.011054255, 0.4622201, -29.473612, 1.6564254, -60.472298)
+[node name="ToolShed" type="Node3D" parent="Environment" index="8"]
+transform = Transform3D(0.95726913, 0, 0.2891989, 0, 1, 0, -0.2891989, 0, 0.95726913, 17.146494, 0.744833, -88.64226)
+
+[node name="ShedModel" type="CSGCombiner3D" parent="Environment/ToolShed" index="0"]
+use_collision = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="WallsOuter" type="CSGBox3D" parent="Environment/ToolShed/ShedModel" index="0"]
+transform = Transform3D(0.9999993, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 0.9999993, -0.625, 1.375, -0.022460938)
+size = Vector3(3.6914063, 3.25, 2.671875)
+material = ExtResource("27_jcrj4")
+
+[node name="WallsInner" type="CSGBox3D" parent="Environment/ToolShed/ShedModel" index="1"]
+transform = Transform3D(0.9999993, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 0.9999993, -0.62976074, 1.9326172, 0)
+operation = 2
+size = Vector3(3.3530273, 5, 2.4060059)
+material = ExtResource("27_jcrj4")
+
+[node name="Doorway" type="CSGBox3D" parent="Environment/ToolShed/ShedModel" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81103516, 1)
+operation = 2
+size = Vector3(1, 2.6220703, 1)
+material = ExtResource("28_3yyw8")
+
+[node name="Window" type="CSGBox3D" parent="Environment/ToolShed/ShedModel" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3884048, 1.586622, 1.25)
+operation = 2
+size = Vector3(0.75, 0.75, 1)
+material = ExtResource("28_3yyw8")
+
+[node name="RoofHole" type="CSGBox3D" parent="Environment/ToolShed/ShedModel" index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, -0.625, 3.4130592, -0.046318054)
+operation = 2
+size = Vector3(3.75, 2.25, 4.75)
+material = ExtResource("28_3yyw8")
+
+[node name="Roof" type="CSGBox3D" parent="Environment/ToolShed/ShedModel" index="5"]
+transform = Transform3D(1, 0, 0, 0, 0.9659257, 0.25881904, 0, -0.25881904, 0.9659257, -0.59381104, 2.291547, -0.019729614)
+size = Vector3(4.062378, 0.10571289, 3.2506104)
+material = ExtResource("29_nyu5b")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/ToolShed" index="1"]
+transform = Transform3D(0.9999999, 0, -2.9802322e-08, 0, 1, 0, 5.9604645e-08, 0, 0.9999999, -0.55093, 1.9450727, 0.09471893)
+light_energy = 1.2
+shadow_enabled = true
+omni_range = 8.4176445
 
 [node name="PlayerPawn" parent="ActiveNodes" index="0" instance=ExtResource("6_k11aq")]
 transform = Transform3D(-0.90002984, 0, 0.4358283, 0, 1, 0, -0.4358283, 0, -0.90002984, 25.364445, 0.80102086, -80.1469)
 
-[node name="TriggerArea" parent="ActiveNodes" index="1" instance=ExtResource("30_wn8os")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.00513, 1.354033, -85.43884)
+[node name="JimmyPawn" parent="ActiveNodes" index="1" instance=ExtResource("33_oixne")]
+transform = Transform3D(-0.055995755, 0, -0.998431, 0, 1, 0, 0.998431, 0, -0.055995755, 15.608452, 0.6872308, -88.44834)
+
+[node name="LookAt" type="Marker3D" parent="ActiveNodes/JimmyPawn" index="2"]
+transform = Transform3D(-0.055995755, 0, 0.998431, 0, 1, 0, -0.998431, 0, -0.055995755, 0, 1.5, 0)
+
+[node name="TriggerArea" parent="ActiveNodes" index="2" instance=ExtResource("30_wn8os")]
+transform = Transform3D(0.4706577, 0, 0.8823159, 0, 1, 0, -0.8823159, 0, 0.4706577, 26.109636, 1.354033, -86.36338)
 dialogue = ExtResource("31_tceo0")
-look_at_node = NodePath("LookAt")
+look_at_node = NodePath("../JimmyPawn/LookAt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActiveNodes/TriggerArea" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21488953, 1.125, 0)
 shape = SubResource("BoxShape3D_3yyw8")
-
-[node name="LookAt" type="Marker3D" parent="ActiveNodes/TriggerArea" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.095272, 1.4863348, -1.1618958)
 
 [editable path="Environment/Campsite/tent2"]
