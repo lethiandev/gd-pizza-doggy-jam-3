@@ -43,6 +43,14 @@ func _physics_process(delta: float) -> void:
 		else:
 			stamina = min(stamina_max, stamina + delta)
 
+	if stamina > stamina_max * 0.2 and stamina_timer <= 0.0:
+		if %BreathingPlayer["parameters/switch_to_clip"] != &"end":
+			%BreathingPlayer["parameters/switch_to_clip"] = &"end"
+	elif stamina < stamina_max * 0.333:
+		if %BreathingPlayer["parameters/switch_to_clip"] != &"loop":
+			%BreathingPlayer["parameters/switch_to_clip"] = &"loop"
+			%BreathingPlayer.volume_db = -15.0
+
 	can_sprint = stamina > 0
 
 	STAMINA_BAR.visible = stamina < stamina_max
