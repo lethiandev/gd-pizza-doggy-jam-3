@@ -881,6 +881,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
+near = 0.02
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera"]
 transform = Transform3D(0.9997158, 0.00080452434, -0.023825353, -0.001149152, 0.99989486, -0.014454588, 0.02381122, 0.01447786, 0.9996116, -0.23855102, -0.31771672, -0.0033523536)
