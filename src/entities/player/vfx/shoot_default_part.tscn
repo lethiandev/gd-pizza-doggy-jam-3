@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwsxuik2piosi"]
+
+[ext_resource type="Script" uid="uid://be7x1f76qgijt" path="res://entities/player/vfx/shoot_default_part.gd" id="1_uew1f"]
+[ext_resource type="Texture2D" uid="uid://hjbyj3i4xfko" path="res://entities/player/vfx/smoke.png" id="2_6u4tm"]
+
+[sub_resource type="Gradient" id="Gradient_y7gbw"]
+offsets = PackedFloat32Array(0.4292683, 0.6, 0.7121951, 0.9170732)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.62352943, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uew1f"]
+gradient = SubResource("Gradient_y7gbw")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6u4tm"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_uew1f")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_y7gbw"]
+material = SubResource("StandardMaterial3D_6u4tm")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uew1f"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_6u4tm")
+metallic_specular = 0.0
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_uew1f"]
+material = SubResource("StandardMaterial3D_uew1f")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="Gradient" id="Gradient_uew1f"]
+offsets = PackedFloat32Array(0, 0.64315355, 1)
+colors = PackedColorArray(1, 1, 1, 0.24313726, 1, 1, 1, 0.32941177, 1, 1, 1, 0)
+
+[node name="HoleParticle" type="CPUParticles3D"]
+emitting = false
+amount = 6
+lifetime = 15.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("QuadMesh_y7gbw")
+emission_shape = 3
+emission_box_extents = Vector3(0.15, 0.15, 0)
+gravity = Vector3(0, 0, 0)
+script = ExtResource("1_uew1f")
+
+[node name="FlyingParticles" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("QuadMesh_uew1f")
+direction = Vector3(0, 0, 1)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 1.0
+damping_min = 0.4
+damping_max = 1.0
+angle_max = 360.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_uew1f")

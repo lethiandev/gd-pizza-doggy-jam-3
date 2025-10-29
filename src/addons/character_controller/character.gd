@@ -132,6 +132,8 @@ var was_on_floor : bool = true # Was the player on the floor last frame (for lan
 var moving : bool = false
 var can_sprint : bool = true
 
+var aiming : bool = false
+
 # The reticle should always have a Control node as the root
 var RETICLE : Control
 
@@ -164,6 +166,10 @@ func _ready():
 
 	if OS.get_name() == "Web":
 		Input.set_use_accumulated_input(false)
+
+
+	# Hide gun fire light
+	$Head/Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon/OmniLight3D.visible = false
 
 
 func _process(_delta):
@@ -208,6 +214,51 @@ func _physics_process(delta): # Most things happen here.
 	update_debug_menu_per_tick()
 
 	was_on_floor = is_on_floor() # This must always be at the end of physics_process
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("aim") and not aiming:
+		%AimingAnimation.play("aiming", 0.25)
+		aiming = true
+	if event.is_action_released("aim") and aiming:
+		%AimingAnimation.play("RESET", 0.25)
+		aiming = false
+
+	if event.is_action_pressed("shoot"):
+		if %ShootAnimation.current_animation == "RESET":
+			%ShootAnimation.play("shoot", 0.1)
+			_raycast_shoot()
+
+
+func _raycast_shoot() -> void:
+	var camera_xform := CAMERA.global_transform
+
+	var ray_query := PhysicsRayQueryParameters3D.new()
+	ray_query.from = camera_xform.origin
+	ray_query.to = camera_xform.origin - camera_xform.basis.z * 50.0
+	ray_query.collide_with_areas = false
+	ray_query.collide_with_bodies = true
+	ray_query.collision_mask = 0x1
+
+	var space := get_world_3d().direct_space_state
+	var result := space.intersect_ray(ray_query)
+
+	if not result.is_empty():
+		var body: Object = result.collider
+		var hit: Vector3 = result.position
+		var normal: Vector3 = result.normal
+
+		if body is CharacterBody3D:
+			# HIT
+			return
+
+		var particles := preload("res://entities/player/vfx/shoot_default_part.tscn").instantiate()
+		add_sibling(particles)
+		particles.amount = randi_range(5, 7)
+		particles.emitting = true
+		particles.global_position = hit + normal * 0.01
+		particles.global_basis = Basis.looking_at(-normal)
+
 
 #endregion
 

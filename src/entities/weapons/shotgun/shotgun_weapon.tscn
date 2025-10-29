@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1nc6jw2latfn"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0bluxg3m80nn" path="res://entities/weapons/shotgun/shotgun_Cylinder_005.res" id="1_arnro"]
+[ext_resource type="ArrayMesh" uid="uid://d373lu3lgk7q8" path="res://entities/weapons/shotgun/shotgun_Cylinder_004.res" id="2_twf5q"]
+
+[node name="ShotgunWeapon" type="Node3D"]
+
+[node name="ShotgunStock" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = ExtResource("1_arnro")
+
+[node name="Detach" type="MeshInstance3D" parent="ShotgunStock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.016814142, -0.53682053)
+cast_shadow = 0
+mesh = ExtResource("2_twf5q")

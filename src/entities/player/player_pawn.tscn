@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bepk21ha1i42i"]
+[gd_scene load_steps=16 format=3 uid="uid://bepk21ha1i42i"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/character_controller/character.tscn" id="1_d12nn"]
 [ext_resource type="Material" uid="uid://wgfc11e4oo3h" path="res://common/materials/prototype_green_material.tres" id="2_3icub"]
@@ -153,6 +153,13 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_3icub"]
 radius = 0.25
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_rjuqe"]
+clip_count = 2
+clip_0/name = &""
+clip_0/auto_advance = 0
+clip_1/name = &""
+clip_1/auto_advance = 0
+
 [node name="PlayerPawn" node_paths=PackedStringArray("CROUCH_ANIMATION") groups=["player"] instance=ExtResource("1_d12nn")]
 collision_layer = 2
 collision_mask = 5
@@ -179,7 +186,6 @@ continuous_jumping = false
 pausing_enabled = false
 
 [node name="Mesh" parent="." index="0"]
-visible = false
 mesh = SubResource("CapsuleMesh_d12nn")
 
 [node name="Collision" parent="." index="1"]
@@ -210,24 +216,10 @@ script = ExtResource("4_22rpl")
 exceptions = [NodePath("../../..")]
 metadata/_custom_type_script = "uid://cx77l2vj57d67"
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera" index="1"]
-transform = Transform3D(0.9997159, 0.0008045246, -0.023825355, -0.0011491522, 0.99989486, -0.014454585, 0.023811223, 0.01447786, 0.9996116, -0.23855102, -0.3177167, -0.0033523536)
-shadow_enabled = true
-shadow_bias = 0.1
-spot_range = 10.0
-spot_attenuation = 0.8
-spot_angle = 30.0
-spot_angle_attenuation = 0.3298771
-
 [node name="HitAnimation" type="AnimationPlayer" parent="Head" index="3"]
 libraries = {
 &"": ExtResource("5_320e5")
 }
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Head" index="4"]
-light_energy = 0.1
-omni_range = 4.0
-omni_shadow_mode = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="UserInterface" index="1"]
 modulate = Color(1, 1, 1, 0.19607843)
@@ -259,3 +251,8 @@ texture_progress = ExtResource("6_320e5")
 [node name="CrouchCeilingDetection" parent="." index="7"]
 shape = SubResource("SphereShape3D_3icub")
 target_position = Vector3(0, 1, 0)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." index="11"]
+stream = SubResource("AudioStreamInteractive_rjuqe")
+
+[editable path="Head/Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon"]

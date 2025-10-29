@@ -15,6 +15,8 @@ func _ready():
 	STAMINA_BAR.max_value = stamina_max
 	STAMINA_BAR.value = stamina
 
+	RETICLE.dot_size = 0.0
+
 	character_jumped.connect(func ():
 		stamina = max(0, stamina - 0.7)
 		stamina_timer = 2.0
@@ -49,6 +51,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	super(event)
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -69,8 +72,8 @@ func trigger_look_at(node: Node3D, timer: float = 0.5) -> void:
 
 
 func _on_interactive_focused(_target: Interactive3D) -> void:
-	RETICLE.dot_size = 2.0
+	RETICLE.dot_size = 1.0
 
 
 func _on_interactive_blured(_target: Interactive3D) -> void:
-	RETICLE.dot_size = 1.0
+	RETICLE.dot_size = 0.0

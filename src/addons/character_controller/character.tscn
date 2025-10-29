@@ -1,11 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=42 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://hutuis63hgev" path="res://addons/character_controller/character.gd" id="1_0t4e8"]
+[ext_resource type="PackedScene" uid="uid://1nc6jw2latfn" path="res://entities/weapons/shotgun/shotgun_weapon.tscn" id="2_fcwsn"]
+[ext_resource type="AudioStream" uid="uid://bxb3nh6iirs5s" path="res://entities/player/sfx/gun_shotgun_shoot.wav" id="3_17ii0"]
 [ext_resource type="Script" uid="uid://dgfl3skp075ft" path="res://addons/character_controller/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" uid="uid://u5u7xxlvmcxx" path="res://addons/character_controller/debug.gd" id="3_x1wcc"]
 [ext_resource type="Script" uid="uid://sbyo3raunkd8" path="res://addons/character_controller/footsteps_ray.gd" id="4_itf46"]
+[ext_resource type="AudioStream" uid="uid://b61h1wq0gq0be" path="res://entities/player/sfx/gun_shotgun_pumping.wav" id="4_qatj2"]
 [ext_resource type="AudioStream" uid="uid://d1dxsxaf7lq0p" path="res://entities/player/sfx/footsteps_grass.wav" id="5_2s5e5"]
 [ext_resource type="AudioStream" uid="uid://bjt7vh6sy6ndh" path="res://entities/player/sfx/jump_1.wav" id="6_7j8er"]
+[ext_resource type="AudioStream" uid="uid://8whyn1aj5uwt" path="res://entities/player/sfx/footsteps_mud.wav" id="7_0hlni"]
 [ext_resource type="AudioStream" uid="uid://d38xlmootj2wq" path="res://entities/player/sfx/jump_2.wav" id="7_fcwsn"]
 [ext_resource type="AudioStream" uid="uid://bm4cgo2b2yjnk" path="res://entities/player/sfx/jump_3.wav" id="8_0hlni"]
 
@@ -179,6 +183,28 @@ tracks/1/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/WeaponSpot/WeaponOrigin:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera/WeaponSpot/WeaponOrigin:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_8ku67"]
 resource_name = "sprint"
@@ -223,6 +249,28 @@ tracks/2/keys = {
 "method": &"play"
 }]
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera/WeaponSpot/WeaponOrigin:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.04, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, -0.04, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.04, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera/WeaponSpot/WeaponOrigin:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.02, -0.25, 0, 0.2, 0.005, 0, -0.2, 0, 0.2, 0, -0.02, -0.2, 0.005, 0.2, 0.005, 0, -0.2, 0, 0.2, 0, -0.02, -0.2, 0.005, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
 
 [sub_resource type="Animation" id="Animation_lrqmv"]
 resource_name = "walk"
@@ -266,6 +314,28 @@ tracks/2/keys = {
 "args": [0.0],
 "method": &"play"
 }]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera/WeaponSpot/WeaponOrigin:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.02, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, -0.02, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.02, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera/WeaponSpot/WeaponOrigin:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.02, -0.25, 0, 0.2, 0.005, 0, -0.2, 0, 0.2, 0, -0.02, -0.2, 0.005, 0.2, 0.005, 0, -0.2, 0, 0.2, 0, -0.02, -0.2, 0.005, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0unb"]
@@ -425,6 +495,338 @@ _data = {
 &"land_right": SubResource("Animation_vsknp")
 }
 
+[sub_resource type="Animation" id="Animation_fcwsn"]
+resource_name = "RESET"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/WeaponSpot:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(0.12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/WeaponSpot:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(-0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/WeaponSpot:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2),
+"points": PackedFloat32Array(-0.14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0hlni"]
+resource_name = "aiming"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/WeaponSpot:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/WeaponSpot:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.065, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/WeaponSpot:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hlni"]
+_data = {
+&"RESET": SubResource("Animation_fcwsn"),
+&"aiming": SubResource("Animation_0hlni")
+}
+
+[sub_resource type="Animation" id="Animation_qatj2"]
+resource_name = "RESET"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = false
+tracks/6/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon/OmniLight3D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon/ShotgunStock/Detach:position:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.53682053, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera:position:z")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qatj2"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_17ii0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_grkbo"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("4_qatj2")
+
+[sub_resource type="Animation" id="Animation_17ii0"]
+resource_name = "shoot"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 4.4703484e-08, -0.25, 0, 0.25, 0, 2.9802322e-08, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.058693886, -0.25, 0, 0.25, 0, -0.20328665, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.19705936, -0.25, 0, 0.25, 0, 0.06138225, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.40503857, -0.25, 0, 0.25, 0, -0.26253232, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -3.848179e-09, -0.25, 0, 0.25, 0, 0.28277817, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.8741053e-08, -0.25, 0, 0.25, 0, 1.0608396e-08, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.8, 1.5)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon/OmniLight3D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.001, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon/ShotgunStock/Detach:position:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-0.53682053, -0.25, 0, 0.25, 0, -0.53682053, -0.25, 0, 0.25, 0, -0.4190615, -0.25, 0, 0.25, 0, -0.53682053, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.08, 1.3666667)
+}
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%ShootAnimation/GunPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_grkbo")
+}],
+"times": PackedFloat32Array(0.86)
+}
+tracks/8/use_blend = true
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Camera:position:z")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.2, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.6)
+}
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%ShootAnimation/ShootPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 5.9604645e-08,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_qatj2")
+}],
+"times": PackedFloat32Array(0.01)
+}
+tracks/10/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qatj2"]
+_data = {
+&"RESET": SubResource("Animation_qatj2"),
+&"shoot": SubResource("Animation_17ii0")
+}
+
 [sub_resource type="Theme" id="Theme_wdf0f"]
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
@@ -437,6 +839,11 @@ MarginContainer/constants/margin_top = 10
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("5_2s5e5")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fcwsn"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("7_0hlni")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2s5e5"]
 random_pitch = 1.1
@@ -458,6 +865,7 @@ COLLISION_MESH = NodePath("Collision")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_jw1de")
 
 [node name="Collision" type="CollisionShape3D" parent="."]
@@ -474,6 +882,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera"]
+transform = Transform3D(0.9997158, 0.00080452434, -0.023825353, -0.001149152, 0.99989486, -0.014454588, 0.02381122, 0.01447786, 0.9996116, -0.23855102, -0.31771672, -0.0033523536)
+shadow_enabled = true
+shadow_bias = 0.1
+spot_range = 10.0
+spot_attenuation = 0.8
+spot_angle = 30.0
+spot_angle_attenuation = 0.3298771
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24904561, 0.26619196)
+light_energy = 0.1
+omni_range = 4.0
+omni_shadow_mode = 0
+
+[node name="WeaponSpot" type="Marker3D" parent="Head/Camera"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.12, -0.1, -0.14)
+
+[node name="WeaponOrigin" type="Node3D" parent="Head/Camera/WeaponSpot"]
+
+[node name="ShotgunWeapon" parent="Head/Camera/WeaponSpot/WeaponOrigin" instance=ExtResource("2_fcwsn")]
+transform = Transform3D(1.0000001, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+
+[node name="Detach" parent="Head/Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon/ShotgunStock" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8626451e-09, 0.009312599, -0.53682053)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Head/Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon"]
+transform = Transform3D(1.9999998, 0, 0, 0, 2.0000002, 0, 0, 0, 2.0000002, 1.4901161e-08, 0.13251424, -0.47499198)
+visible = false
+light_color = Color(0.9999998, 0.73217696, 0.25844368, 1)
+light_energy = 10.0
+omni_range = 10.0
+
 [node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
 libraries = {
 &"": SubResource("AnimationLibrary_o0unb")
@@ -485,6 +926,27 @@ libraries = {
 &"": SubResource("AnimationLibrary_qeg5r")
 }
 speed_scale = 4.0
+
+[node name="AimingAnimation" type="AnimationPlayer" parent="Head"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0hlni")
+}
+autoplay = "RESET"
+
+[node name="ShootAnimation" type="AnimationPlayer" parent="Head"]
+unique_name_in_owner = true
+process_priority = -1
+libraries = {
+&"": SubResource("AnimationLibrary_qatj2")
+}
+autoplay = "RESET"
+next/shoot = &"RESET"
+
+[node name="GunPlayer" type="AudioStreamPlayer" parent="Head/ShootAnimation"]
+
+[node name="ShootPlayer" type="AudioStreamPlayer" parent="Head/ShootAnimation"]
+volume_db = 6.0
 
 [node name="UserInterface" type="Control" parent="."]
 layout_mode = 3
@@ -524,7 +986,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 hit_from_inside = true
 script = ExtResource("4_itf46")
 footstep_library = Dictionary[StringName, AudioStream]({
-&"default": SubResource("AudioStreamRandomizer_itf46")
+&"default": SubResource("AudioStreamRandomizer_itf46"),
+&"wooden": SubResource("AudioStreamRandomizer_fcwsn")
 })
 
 [node name="FootstepsPlayer" type="AudioStreamPlayer" parent="FootstepsRay"]
@@ -534,3 +997,5 @@ volume_db = -10.0
 stream = SubResource("AudioStreamRandomizer_2s5e5")
 volume_db = -5.0
 pitch_scale = 0.9
+
+[editable path="Head/Camera/WeaponSpot/WeaponOrigin/ShotgunWeapon"]
