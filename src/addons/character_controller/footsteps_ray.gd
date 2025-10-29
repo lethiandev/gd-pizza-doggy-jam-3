@@ -8,8 +8,9 @@ func _physics_process(delta: float) -> void:
 	var library_name: StringName = ""
 
 	if is_colliding():
-		# TODO add material based
-		pass
+		var collider: Object = get_collider()
+		if collider.has_meta("footsteps"):
+			library_name = collider.get_meta("footsteps")
 
 	var stream = footstep_library[foosteps_default]
 	if footstep_library.has(library_name):

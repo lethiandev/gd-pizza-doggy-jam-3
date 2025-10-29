@@ -116,9 +116,9 @@ metadata/_editor_icon = ExtResource("11_brm08")
 
 [node name="HTerrainDetailLayer2" type="Node3D" parent="Environment/HTerrain" index="1"]
 script = ExtResource("10_j5vx0")
-layer_index = 1
 texture = ExtResource("15_nivhs")
 custom_shader = ExtResource("12_5mxjk")
+density = 1.0
 instance_mesh = ExtResource("13_soi1q")
 shader_params/u_globalmap_tint_bottom = null
 shader_params/u_globalmap_tint_top = 0.2000000095
@@ -249,7 +249,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tb12c")
 transform = Transform3D(0.7401001, 0.93575954, 0.12886363, -0.005737658, -0.15925069, 1.1893723, 0.94457346, -0.7341616, -0.09374367, -3.0461297, 0.19558923, 1.9510784)
 
 [node name="torchlight" parent="Environment/Campsite" index="3" instance=ExtResource("24_63eho")]
-transform = Transform3D(0.825446, 0.040620085, 0.5630177, -0.03355738, 0.99917465, -0.02288872, -0.56348276, 1.8626451e-09, 0.8261278, 2.9802656, -0.053718925, -4.455864)
+transform = Transform3D(0.9091083, 0.06921106, 0.41076997, -0.06560471, 0.99758315, -0.022888716, -0.41136143, -0.006140122, 0.91145164, 0.89383316, -0.074318886, -2.1548767)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Environment/Campsite/torchlight" index="1"]
 transform = Transform3D(-0.004188789, 0, 0.9999912, 0, 1, 0, -0.9999913, 0, -0.0041887853, -0.07249063, -1.1704102e-10, -0.00045929893)
@@ -261,8 +261,6 @@ transform = Transform3D(0.46235234, -0.021199787, 0.8864429, -2.3283064e-10, 0.9
 
 [node name="Cabin" type="Node3D" parent="Environment" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5141, 0.81546783, -88.03296)
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="Walls" type="CSGCombiner3D" parent="Environment/Cabin" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53856516, 0)
@@ -330,6 +328,7 @@ size = Vector3(1, 2.4072266, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03856516, 0)
 material_override = ExtResource("28_3yyw8")
 use_collision = true
+metadata/footsteps = &"wooden"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/Floor" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0.875)
@@ -367,6 +366,7 @@ size = Vector3(1.9797363, 1, 1.25)
 [node name="Roof" type="CSGCombiner3D" parent="Environment/Cabin" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 material_override = ExtResource("29_nyu5b")
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/Roof" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0.75)
@@ -411,6 +411,7 @@ size = Vector3(0.39453125, 0.20947266, 3.6016846)
 [node name="Stairs" type="CSGCombiner3D" parent="Environment/Cabin" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4581013, 0.03949237, 5.6039963)
 material_override = ExtResource("28_3yyw8")
+metadata/footsteps = &"wooden"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/Stairs" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.375)
@@ -434,6 +435,7 @@ operation = 2
 size = Vector3(3, 2.75, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/Cabin/Stairs" index="5"]
+metadata/footsteps = &"wooden"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Cabin/Stairs/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_3yyw8")
@@ -441,6 +443,7 @@ shape = SubResource("ConvexPolygonShape3D_3yyw8")
 [node name="Stairs2" type="CSGCombiner3D" parent="Environment/Cabin" index="4"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.145155, 0.28438818, -1.3960036)
 material_override = ExtResource("28_3yyw8")
+metadata/footsteps = &"wooden"
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Cabin/Stairs2" index="0"]
 size = Vector3(1.5, 0.5, 0.5)
@@ -492,6 +495,7 @@ size = Vector3(3, 5.5, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/Cabin/Stairs2" index="12"]
 visible = false
+metadata/footsteps = &"wooden"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Cabin/Stairs2/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_wn8os")
@@ -520,35 +524,35 @@ operation = 2
 size = Vector3(1.1660156, 1.75, 2.6591797)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Cabin/Rails" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.54151344, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76917076, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Cabin/Rails" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.064546585, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21166992, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Cabin/Rails" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44685173, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36379242, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Cabin/Rails" index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96253395, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9053478, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Cabin/Rails" index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4917812, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4571114, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Cabin/Rails" index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0683231, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0153217, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Cabin/Rails" index="10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5893898, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5389137, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="Environment/Cabin/Rails" index="11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.109089, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0612907, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="Environment/Cabin/Rails" index="12"]
@@ -568,15 +572,15 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Cabin/Rails" index="16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3163662, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1652126, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Cabin/Rails" index="17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7145233, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5899124, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Cabin/Rails" index="18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0780277, -0.27764893, 1.5441742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0178947, -0.27764893, 1.5441742)
 size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Cabin/Rails" index="19"]
@@ -613,6 +617,7 @@ size = Vector3(0.1385498, 1.0286865, 0.08555603)
 
 [node name="CellarWalls" type="CSGCombiner3D" parent="Environment/Cabin" index="6"]
 use_collision = true
+metadata/footsteps = &"wooden"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Cabin/CellarWalls" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010871887, -0.8041992, 0.90270996)
@@ -638,6 +643,8 @@ material = ExtResource("27_jcrj4")
 
 [node name="ToolShed" type="Node3D" parent="Environment" index="8"]
 transform = Transform3D(0.95726913, 0, 0.2891989, 0, 1, 0, -0.2891989, 0, 0.95726913, 17.146494, 0.744833, -88.64226)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="ShedModel" type="CSGCombiner3D" parent="Environment/ToolShed" index="0"]
 use_collision = true
