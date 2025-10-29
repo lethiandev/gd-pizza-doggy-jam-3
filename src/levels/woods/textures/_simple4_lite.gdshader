@@ -204,6 +204,7 @@ void fragment() {
 	ROUGHNESS = 1.0;
 	
 	NORMAL = (VIEW_MATRIX * (vec4(terrain_normal_world, 0.0))).xyz;
+	SPECULAR = 0.1;
 
 	//ALBEDO = w.rgb;
 	//ALBEDO = v_ground_uv.xyz;
